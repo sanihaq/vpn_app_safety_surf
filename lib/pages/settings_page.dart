@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/colors.dart';
-import 'package:vpn_app/widgets/bototm_button.dart';
+import 'package:vpn_app/widgets/bottom_button.dart';
 
 import '../utils/app_icons.dart';
 
@@ -21,7 +21,7 @@ class SettingsPage extends StatelessWidget {
             Column(),
             Padding(
               padding: EdgeInsets.only(bottom: 50.0),
-              child: BototmNavigationButton(
+              child: BottomNavigationButton(
                 icon: AppIcons.x,
                 onTap: () {
                   Navigator.of(context).pop();

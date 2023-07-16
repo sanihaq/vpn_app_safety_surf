@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../theming/colors.dart';
 
-class BototmNavigationButton extends StatelessWidget {
-  const BototmNavigationButton({
+class BottomNavigationButton extends StatelessWidget {
+  const BottomNavigationButton({
     super.key,
     required this.icon,
     this.onTap,

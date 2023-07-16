@@ -1,5 +1,6 @@
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:flutter/material.dart';
+import 'package:vpn_app/utils/sizes.dart';
 import 'package:window_manager/window_manager.dart' show WindowOptions, windowManager;
 
 import 'areas/bottom_navbar.dart';
@@ -128,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       connectionState.reactiveValue(context) == ConnectionState.none
                                           ? kSurfIconGradient
                                           : kSurfIconPlain,
-                                      width: 36,
+                                      width: kSizesSurfLogo,
                                     ),
                                     const Row(
                                       mainAxisAlignment: MainAxisAlignment.center,

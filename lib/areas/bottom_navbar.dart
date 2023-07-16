@@ -4,7 +4,7 @@ import '../pages/get_pro.dart';
 import '../pages/servers_page.dart';
 import '../pages/settings_page.dart';
 import '../utils/app_icons.dart';
-import '../widgets/bototm_button.dart';
+import '../widgets/bottom_button.dart';
 
 class BottomNavbar extends StatelessWidget {
   const BottomNavbar({
@@ -16,7 +16,7 @@ class BottomNavbar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        BototmNavigationButton(
+        BottomNavigationButton(
           icon: AppIcons.crown,
           onTap: () {
             Navigator.of(context).push(
@@ -24,7 +24,7 @@ class BottomNavbar extends StatelessWidget {
             );
           },
         ),
-        BototmNavigationButton(
+        BottomNavigationButton(
           icon: AppIcons.globesimple,
           onTap: () {
             Navigator.of(context).push(
@@ -32,7 +32,7 @@ class BottomNavbar extends StatelessWidget {
             );
           },
         ),
-        BototmNavigationButton(
+        BottomNavigationButton(
           icon: AppIcons.nut,
           onTap: () {
             Navigator.of(context).push(

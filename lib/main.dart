@@ -1,22 +1,18 @@
-import 'package:collection/collection.dart';
-import 'package:vpn_app/areas/connection_stats.dart';
-import 'package:vpn_app/areas/location_condition_info.dart';
-import 'package:vpn_app/states/notifier.dart';
-import 'package:vpn_app/theming/colors.dart';
-import 'package:vpn_app/utils/app_icons.dart';
-import 'package:vpn_app/utils/assets.dart';
-import 'package:window_manager/window_manager.dart' show WindowOptions, windowManager;
-import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:flutter/material.dart';
+import 'package:window_manager/window_manager.dart' show WindowOptions, windowManager;
 
 import 'areas/bottom_navbar.dart';
+import 'areas/connection_stats.dart';
 import 'areas/flag_area.dart';
 import 'areas/location_area.dart';
+import 'areas/location_condition_info.dart';
+import 'states/notifier.dart';
+import 'theming/colors.dart';
+import 'utils/assets.dart';
 import 'utils/platform_details.dart';
-import 'widgets/bototm_button.dart';
 import 'widgets/circle_button.dart';
 import 'widgets/circles.dart';
-import 'widgets/horizontal_list_view.dart';
 import 'widgets/overflow_circle.dart';
 
 void main() async {
@@ -128,7 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Image.asset(kSurf, width: 36),
+                                    Image.asset(
+                                      connectionState.reactiveValue(context) == ConnectionState.none
+                                          ? kSurfIconGradient
+                                          : kSurfIconPlain,
+                                      width: 36,
+                                    ),
                                     const Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
@@ -150,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           children: [
                             LocationConditionInfo(),
                             Padding(
-                              padding: EdgeInsets.symmetric(vertical: 4.0),
+                              padding: EdgeInsets.symmetric(vertical: 20.0),
                               child: FlagArea(),
                             ),
                             LocatonArea(),

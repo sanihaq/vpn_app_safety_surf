@@ -18,7 +18,7 @@ class _HorizontalListViewState extends State<HorizontalListView> {
   bool isScrolling = false;
   final scrollController = ScrollController();
 
-  final coverArts = [k5, k35, k15];
+  final coverArts = [];
 
   @override
   void initState() {
@@ -35,8 +35,7 @@ class _HorizontalListViewState extends State<HorizontalListView> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (BuildContext ctx, BoxConstraints constraint) {
-        double calcCardLocation(
-            {double? pixel, required double itemSize, int? index}) {
+        double calcCardLocation({double? pixel, required double itemSize, int? index}) {
           //current pixel: pixel
           //listPadding is not considered as moving pixel by scroll (0.0 is after padding)
           //substracted by itemSize/2 (to center the item)
@@ -111,8 +110,7 @@ class _HorizontalListViewState extends State<HorizontalListView> {
             child: ListView.builder(
               controller: scrollController,
               scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(
-                  decelerationRate: ScrollDecelerationRate.fast),
+              physics: const BouncingScrollPhysics(decelerationRate: ScrollDecelerationRate.fast),
               padding: EdgeInsets.symmetric(
                 horizontal: max(0, (constraint.maxWidth / 2) - kImageSize1 / 2),
               ),

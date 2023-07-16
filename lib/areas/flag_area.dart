@@ -12,13 +12,13 @@ class FlagArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [k15, k36, k5]
+      children: [kFlagFrance, kFlagLuxembourg, kFlagGermany]
           .mapIndexed(
             (i, el) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
               child: Image.asset(
                 el,
-                width: i == 1 ? 96 : 80,
+                width: i == 1 ? 65 : 45,
               ),
             ),
           )

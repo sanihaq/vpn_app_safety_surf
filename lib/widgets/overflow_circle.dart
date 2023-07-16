@@ -36,20 +36,15 @@ class OverflowCircle extends StatelessWidget {
             (i, size) {
               const innerBorder = 1.5;
               return Align(
-                alignment: paddonfOffset != 0
-                    ? Alignment.bottomCenter
-                    : Alignment.topCenter,
+                alignment: paddonfOffset != 0 ? Alignment.bottomCenter : Alignment.topCenter,
                 child: Transform.translate(
-                  offset: paddonfOffset != 0
-                      ? Offset(0, size / 2)
-                      : Offset(0, -size / 2),
+                  offset: paddonfOffset != 0 ? Offset(0, size / 2) : Offset(0, -size / 2),
                   child: Stack(
                     children: [
                       Container(
                         width: size,
                         height: size,
-                        decoration:
-                            getCircleDecoration(const Color(0xFF7C858D)),
+                        decoration: getCircleDecoration(const Color(0xFF7C858D)),
                       ),
                       Transform.translate(
                         offset: const Offset(innerBorder / 2, innerBorder / 2),

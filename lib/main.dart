@@ -1,10 +1,13 @@
 import 'package:collection/collection.dart';
+import 'package:vpn_app/areas/connection_stats.dart';
 import 'package:vpn_app/areas/location_condition_info.dart';
+import 'package:vpn_app/states/notifier.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/utils/app_icons.dart';
 import 'package:vpn_app/utils/assets.dart';
 import 'package:window_manager/window_manager.dart' show WindowOptions, windowManager;
 import 'package:flutter/material.dart';
+import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 
 import 'areas/bottom_navbar.dart';
 import 'areas/flag_area.dart';
@@ -83,20 +86,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: const EdgeInsets.only(bottom: bottomPadding),
                     child: Stack(
                       children: [
-                        Circles(sizes: littleCircleSizes),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: size),
-                          child: OverflowCircle(
-                            size: size * 0.89,
-                            paddonfOffset: bottomPadding * 0.5,
-                            littleCirlceSizes: littleCircleSizes,
-                          ),
+                        Circles(
+                          size: size,
+                          sizes: littleCircleSizes,
                         ),
+                        if (connectionState.reactiveValue(context) == ConnectionState.none)
+                          Padding(
+                            padding: EdgeInsets.only(bottom: size),
+                            child: OverflowCircle(
+                              size: size * 0.89,
+                              paddonfOffset: bottomPadding * 0.5,
+                              littleCirlceSizes: littleCircleSizes,
+                            ),
+                          ),
                         Padding(
                           padding: EdgeInsets.only(top: size - (bottomPadding * 0.78)),
                           child: OverflowCircle(
                             size: size * 0.89,
-                            littleCirlceSizes: littleCircleSizes.sublist(2),
+                            littleCirlceSizes:
+                                connectionState.reactiveValue(context) != ConnectionState.none
+                                    ? littleCircleSizes.sublist(3)
+                                    : littleCircleSizes.sublist(2),
                           ),
                         ),
                         const Center(
@@ -112,27 +122,29 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(top: size * 0.075),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image.asset(kSurf, width: 34),
-                              const Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'SAFETY SURF',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Color(0xFF64D2FF),
-                                      fontSize: 24,
-                                      fontFamily: 'Antonio',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          child: connectionState.reactiveValue(context) == ConnectionState.active
+                              ? const ConnectionStats()
+                              : Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(kSurf, width: 36),
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'SAFETY SURF',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xFF64D2FF),
+                                            fontSize: 24,
+                                            fontFamily: 'Antonio',
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
                         ),
                         const Column(
                           children: [

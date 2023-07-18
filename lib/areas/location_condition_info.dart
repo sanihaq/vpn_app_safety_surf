@@ -4,6 +4,7 @@ import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import '../states/notifier.dart';
 import '../theming/colors.dart';
 import '../utils/app_icons.dart';
+import '../widgets/spinner_widget.dart';
 
 class LocationConditionInfo extends StatelessWidget {
   const LocationConditionInfo({
@@ -13,7 +14,7 @@ class LocationConditionInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return connectionState.reactiveValue(context) == ConnectionState.none
-        ? Column(
+        ? const Column(
             children: [
               Padding(
                 padding: const EdgeInsets.all(6.0),
@@ -40,13 +41,13 @@ class LocationConditionInfo extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  connectionState.reactiveValue(context) == ConnectionState.waiting
-                      ? AppIcons.spinner
-                      : AppIcons.hourglasssimple,
-                  size: 28,
-                  color: AppColors.indigo,
-                ),
+                child: connectionState.reactiveValue(context) == ConnectionState.waiting
+                    ? const SpinnerWidget()
+                    : const Icon(
+                        AppIcons.hourglasssimple,
+                        size: 28,
+                        color: AppColors.indigo,
+                      ),
               ),
               Text(
                 connectionState.reactiveValue(context) == ConnectionState.waiting

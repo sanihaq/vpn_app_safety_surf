@@ -4,6 +4,7 @@ import '../pages/get_pro.dart';
 import '../pages/servers_page.dart';
 import '../pages/settings_page.dart';
 import '../utils/app_icons.dart';
+import '../utils/create_route.dart';
 import '../widgets/bottom_button.dart';
 
 class BottomNavbar extends StatelessWidget {
@@ -20,7 +21,7 @@ class BottomNavbar extends StatelessWidget {
           icon: AppIcons.crown,
           onTap: () {
             Navigator.of(context).push(
-              _createRoute(const GetProPage()),
+              createRoute(const GetProPage()),
             );
           },
         ),
@@ -28,7 +29,7 @@ class BottomNavbar extends StatelessWidget {
           icon: AppIcons.globesimple,
           onTap: () {
             Navigator.of(context).push(
-              _createRoute(const ServersPage()),
+              createRoute(const ServersPage()),
             );
           },
         ),
@@ -36,31 +37,11 @@ class BottomNavbar extends StatelessWidget {
           icon: AppIcons.nut,
           onTap: () {
             Navigator.of(context).push(
-              _createRoute(const SettingsPage()),
+              createRoute(const SettingsPage()),
             );
           },
         ),
       ],
-    );
-  }
-
-  Route _createRoute(Widget page) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionDuration: const Duration(milliseconds: 180),
-      reverseTransitionDuration: const Duration(milliseconds: 150),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const begin = Offset(0.0, 1.0);
-        const end = Offset.zero;
-        const curve = Curves.ease;
-
-        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
     );
   }
 }

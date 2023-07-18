@@ -12,9 +12,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: AppColors.gradientBg,
-        ),
+        decoration: const BoxDecoration(color: AppColors.bg),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

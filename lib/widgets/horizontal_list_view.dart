@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:vpn_app/utils/assets.dart';
 
 const kImageSize1 = 200.0;
 

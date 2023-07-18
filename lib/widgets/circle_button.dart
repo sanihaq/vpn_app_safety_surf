@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:vpn_app/pages/session_stats.dart';
 
 import '../states/notifier.dart';
+import '../utils/create_route.dart';
 
 class CircleButton extends StatelessWidget {
   const CircleButton({
@@ -14,10 +16,16 @@ class CircleButton extends StatelessWidget {
       onTap: () {
         if (connectionState.value == ConnectionState.none) {
           connectionState.value = ConnectionState.waiting;
-          Future.delayed(const Duration(seconds: 1))
-              .then((value) => connectionState.value = ConnectionState.active);
+          Future.delayed(const Duration(seconds: 10)).then((value) {
+            connectionState.value = ConnectionState.active;
+          });
         } else {
           connectionState.value = ConnectionState.none;
+          Future.delayed(const Duration(milliseconds: 300)).then((value) {
+            Navigator.of(context).push(
+              createRoute(const SessionStats()),
+            );
+          });
         }
       },
       child: Container(

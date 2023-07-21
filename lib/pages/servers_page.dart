@@ -1,4 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:vpn_app/data/models/location_model.dart';
+import 'package:vpn_app/data/models/server_model.dart';
+import 'package:vpn_app/data/servers_list_data.dart';
+import 'package:vpn_app/states/notifier.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/utils/assets.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
@@ -7,6 +14,8 @@ import 'package:vpn_app/widgets/power_button.dart';
 
 import '../utils/app_icons.dart';
 import '../widgets/app_tab.dart';
+import '../widgets/server_expansion_tile.dart';
+import '../widgets/server_location_details.dart';
 
 class ServersPage extends StatefulWidget {
   const ServersPage({super.key});
@@ -17,6 +26,10 @@ class ServersPage extends StatefulWidget {
 
 class _ServersPageState extends State<ServersPage> with SingleTickerProviderStateMixin {
   late TabController tabController;
+
+  bool isSortReversed = false;
+
+  List<LocationModel> serverList = [...serverLocationsList];
 
   @override
   void initState() {
@@ -95,12 +108,19 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                 padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                 child: TabBarView(
                   controller: tabController,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    Column(
-                      children: [
-                        LocationExpansoinTile(),
-                      ],
+                    SingleChildScrollView(
+                      child: Column(
+                        children: serverList
+                            .map(
+                              (e) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: LocationExpansoinTile(location: e),
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
                     Column(
                       children: [
@@ -139,28 +159,51 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                           ),
                         ),
                         SizedBox(height: 12),
-                        LocationExpansoinTile(),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: serverList
+                                  .map(
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.only(bottom: 8.0),
+                                      child:
+                                          LocationExpansoinTile(location: e, showOnlyOptimal: true),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        LocationExpansoinTile(),
-                      ],
+                    SingleChildScrollView(
+                      child: Column(
+                        children: serverList
+                            .where((e) => e.servers.any((el) => favouriteIPs.value.contains(el.ip)))
+                            .map(
+                              (e) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: LocationExpansoinTile(
+                                  location: e,
+                                  showOnlyFavourite: true,
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 50.0),
+              padding: const EdgeInsets.only(bottom: 50.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   BottomNavigationButton(
                     icon: AppIcons.arrowsclockwise,
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
+                    onTap: () {},
                   ),
                   BottomNavigationButton(
                     icon: AppIcons.x,
@@ -169,9 +212,12 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                     },
                   ),
                   BottomNavigationButton(
-                    icon: AppIcons.sortascending,
+                    icon: isSortReversed ? AppIcons.sortdescending : AppIcons.sortascending,
                     onTap: () {
-                      Navigator.of(context).pop();
+                      setState(() {
+                        isSortReversed = !isSortReversed;
+                        serverList = [...serverList.reversed];
+                      });
                     },
                   ),
                 ],
@@ -180,151 +226,6 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
           ],
         ),
       ),
-    );
-  }
-}
-
-class LocationExpansoinTile extends StatefulWidget {
-  const LocationExpansoinTile({
-    super.key,
-    this.isExpanded = false,
-  });
-
-  final bool isExpanded;
-
-  @override
-  State<LocationExpansoinTile> createState() => _LocationExpansoinTileState();
-}
-
-class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
-  bool _isExpanded = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isExpanded = widget.isExpanded;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      initiallyExpanded: widget.isExpanded,
-      backgroundColor: AppColors.white,
-      collapsedBackgroundColor: AppColors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      collapsedShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      title: Row(
-        children: [
-          Image.asset(
-            kFlagFrance,
-            width: 24,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Text("FRANCE"),
-          ),
-        ],
-      ),
-      trailing: Padding(
-        padding: const EdgeInsets.only(right: 8.0),
-        child: Icon(
-          _isExpanded ? AppIcons.caretup : AppIcons.caretdown,
-          size: 22,
-          color: AppColors.lightStateGray60,
-        ),
-      ),
-      onExpansionChanged: (value) {
-        setState(() {
-          _isExpanded = value;
-        });
-      },
-      tilePadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      childrenPadding: const EdgeInsets.only(top: 2.0),
-      children: [
-        ServerLocationDetails(),
-        ServerLocationDetails(),
-      ],
-    );
-  }
-}
-
-class ServerLocationDetails extends StatelessWidget {
-  const ServerLocationDetails({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Divider(
-          color: AppColors.bg,
-          thickness: 2,
-          height: 0,
-          indent: 0,
-          endIndent: 0,
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      ConnectionHealthIndicator(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Text(
-                          'LX-FREE#1',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontFamily: 'Antonio',
-                            fontWeight: FontWeight.w300,
-                            letterSpacing: 1,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 30,
-                        child: Icon(
-                          AppIcons.lightning_fill,
-                          size: 18,
-                          color: AppColors.indigo,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Text(
-                          'Ping: 67 ms',
-                          style: TextStyle(
-                            color: Color(0xFF7C858D),
-                            fontSize: 14,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              PowerButton()
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

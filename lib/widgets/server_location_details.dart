@@ -66,7 +66,7 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                       children: [
                         Row(
                           children: [
-                            ConnectionHealthIndicator(),
+                            ConnectionHealthIndicator(health: widget.server.ping.value),
                             Padding(
                               padding: const EdgeInsets.only(left: 16.0),
                               child: Text(

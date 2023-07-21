@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../theming/colors.dart';
 import '../utils/app_icons.dart';
 import '../utils/assets.dart';
+import '../widgets/connection_health_indicator.dart';
 
 class LocatonArea extends StatelessWidget {
   const LocatonArea({
@@ -45,23 +46,7 @@ class LocatonArea extends StatelessWidget {
             SizedBox(
               width: 98,
               child: Center(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: List.generate(
-                    3,
-                    (index) => Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Container(
-                        width: 6,
-                        height: 6,
-                        decoration: ShapeDecoration(
-                          shape: OvalBorder(),
-                          color: AppColors.green,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                child: ConnectionHealthIndicator(),
               ),
             )
           ],

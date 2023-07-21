@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/colors.dart';
+import 'package:vpn_app/utils/assets.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
+import 'package:vpn_app/widgets/connection_health_indicator.dart';
+import 'package:vpn_app/widgets/power_button.dart';
 
 import '../utils/app_icons.dart';
+import '../widgets/app_tab.dart';
 
 class ServersPage extends StatefulWidget {
   const ServersPage({super.key});
@@ -18,6 +22,11 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
   void initState() {
     super.initState();
     tabController = TabController(length: 3, vsync: this);
+    tabController.addListener(() {
+      if (tabController.indexIsChanging) {
+        setState(() {});
+      }
+    });
   }
 
   @override
@@ -35,47 +44,110 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            DefaultTabController(
-              length: 3,
-              child: Column(
-                children: [
-                  const SizedBox(height: 60),
-                  Text(
-                    'Server location',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w600,
+            const SizedBox(height: 60),
+            Text(
+              'Server location',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 30),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                AppTab(
+                  isActive: tabController.index == 0,
+                  icon: AppIcons.harddrives,
+                  activeIcon: AppIcons.harddrives_fill,
+                  text: "All server",
+                  onTap: () {
+                    tabController.animateTo(0);
+                  },
+                ),
+                AppTab(
+                  isActive: tabController.index == 1,
+                  icon: AppIcons.lightning,
+                  activeIcon: AppIcons.lightning_fill,
+                  text: "Optimal",
+                  onTap: () {
+                    tabController.animateTo(1);
+                  },
+                ),
+                AppTab(
+                  isActive: tabController.index == 2,
+                  icon: AppIcons.heart,
+                  activeIcon: AppIcons.heart_fill,
+                  text: "Favourites",
+                  color: AppColors.pink,
+                  onTap: () {
+                    tabController.animateTo(2);
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+                child: TabBarView(
+                  controller: tabController,
+                  children: [
+                    Column(
+                      children: [
+                        LocationExpansoinTile(),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 30),
-                  Builder(
-                    builder: (context) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          AppTab(
-                            icon: tabController.index == 0
-                                ? AppIcons.harddrives_fill
-                                : AppIcons.harddrives,
-                            text: "All server",
-                            onTap: () {},
+                    Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.yellow,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          AppTab(
-                            icon: AppIcons.lightning,
-                            text: "Optimal",
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(kEmojiSalut, width: 28),
+                                Expanded(
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                        child: Text(
+                                          'FREE 7 DAYS UNLIM',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontFamily: 'Antonio',
+                                            fontWeight: FontWeight.w300,
+                                            letterSpacing: 1,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                PowerButton(),
+                              ],
+                            ),
                           ),
-                          AppTab(
-                            icon: AppIcons.heart,
-                            text: "Favourites",
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                ],
+                        ),
+                        SizedBox(height: 12),
+                        LocationExpansoinTile(),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        LocationExpansoinTile(),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -111,41 +183,147 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
   }
 }
 
-class AppTab extends StatelessWidget {
-  const AppTab({
+class LocationExpansoinTile extends StatefulWidget {
+  const LocationExpansoinTile({
     super.key,
-    required this.icon,
-    required this.text,
-    this.onTap,
+    this.isExpanded = false,
   });
 
-  final IconData icon;
-  final String text;
-  final void Function()? onTap;
+  final bool isExpanded;
+
+  @override
+  State<LocationExpansoinTile> createState() => _LocationExpansoinTileState();
+}
+
+class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
+  bool _isExpanded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isExpanded = widget.isExpanded;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
+    return ExpansionTile(
+      initiallyExpanded: widget.isExpanded,
+      backgroundColor: AppColors.white,
+      collapsedBackgroundColor: AppColors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      collapsedShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      title: Row(
         children: [
-          Icon(
-            icon,
-            color: AppColors.indigo,
+          Image.asset(
+            kFlagFrance,
+            width: 24,
           ),
-          const SizedBox(height: 4),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColors.indigo,
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-            ),
-          )
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Text("FRANCE"),
+          ),
         ],
       ),
+      trailing: Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: Icon(
+          _isExpanded ? AppIcons.caretup : AppIcons.caretdown,
+          size: 22,
+          color: AppColors.lightStateGray60,
+        ),
+      ),
+      onExpansionChanged: (value) {
+        setState(() {
+          _isExpanded = value;
+        });
+      },
+      tilePadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      childrenPadding: const EdgeInsets.only(top: 2.0),
+      children: [
+        ServerLocationDetails(),
+        ServerLocationDetails(),
+      ],
+    );
+  }
+}
+
+class ServerLocationDetails extends StatelessWidget {
+  const ServerLocationDetails({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Divider(
+          color: AppColors.bg,
+          thickness: 2,
+          height: 0,
+          indent: 0,
+          endIndent: 0,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      ConnectionHealthIndicator(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'LX-FREE#1',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontFamily: 'Antonio',
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 30,
+                        child: Icon(
+                          AppIcons.lightning_fill,
+                          size: 18,
+                          color: AppColors.indigo,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Ping: 67 ms',
+                          style: TextStyle(
+                            color: Color(0xFF7C858D),
+                            fontSize: 14,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              PowerButton()
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

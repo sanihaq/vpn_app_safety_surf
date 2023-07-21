@@ -6,6 +6,7 @@ import 'package:vpn_app/widgets/bottom_button.dart';
 import '../utils/app_icons.dart';
 import '../utils/assets.dart';
 import '../utils/sizes.dart';
+import '../widgets/power_button.dart';
 
 class GetProPage extends StatelessWidget {
   const GetProPage({super.key});
@@ -194,18 +195,7 @@ class GetProPage extends StatelessWidget {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(right: 12.0),
-                                        child: Container(
-                                          width: 48,
-                                          height: 48,
-                                          decoration: ShapeDecoration(
-                                            color: AppColors.yellow,
-                                            shape: OvalBorder(),
-                                          ),
-                                          child: Icon(
-                                            AppIcons.power,
-                                            size: 28,
-                                          ),
-                                        ),
+                                        child: PowerButton(),
                                       ),
                                     ],
                                   ),

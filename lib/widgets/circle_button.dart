@@ -16,7 +16,7 @@ class CircleButton extends StatelessWidget {
       onTap: () {
         if (connectionState.value == ConnectionState.none) {
           connectionState.value = ConnectionState.waiting;
-          Future.delayed(const Duration(seconds: 10)).then((value) {
+          Future.delayed(const Duration(seconds: 1)).then((value) {
             connectionState.value = ConnectionState.active;
           });
         } else {

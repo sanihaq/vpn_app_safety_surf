@@ -95,6 +95,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                 padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
                 child: TabBarView(
                   controller: tabController,
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
                     Column(
                       children: [

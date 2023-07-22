@@ -5,6 +5,7 @@ import 'package:vpn_app/utils/assets.dart';
 final serverLocationsList = <LocationModel>[
   LocationModel(
     country: "Austria",
+    countryCode: "AU",
     countryFlag: kFlagAustria,
     servers: [
       ServerModel(name: "au-free#1", ip: "141.69.120.10", isPro: false),
@@ -14,6 +15,7 @@ final serverLocationsList = <LocationModel>[
   ),
   LocationModel(
     country: "France",
+    countryCode: "FR",
     countryFlag: kFlagFrance,
     servers: [
       ServerModel(name: "fr-free#1", ip: "153.157.124.113", isPro: false),
@@ -23,6 +25,7 @@ final serverLocationsList = <LocationModel>[
   ),
   LocationModel(
     country: "Germany",
+    countryCode: "DE",
     countryFlag: kFlagGermany,
     servers: [
       ServerModel(name: "de-free#1", ip: "74.62.225.21", isPro: false),
@@ -32,6 +35,7 @@ final serverLocationsList = <LocationModel>[
   ),
   LocationModel(
     country: "Hungary",
+    countryCode: "HU",
     countryFlag: kFlagHungary,
     servers: [
       ServerModel(name: "hu-free#1", ip: "137.124.157.69", isPro: false),
@@ -41,6 +45,7 @@ final serverLocationsList = <LocationModel>[
   ),
   LocationModel(
     country: "Ireland",
+    countryCode: "IE",
     countryFlag: kFlagIreland,
     servers: [
       ServerModel(name: "ie-free#1", ip: "164.44.147.73", isPro: false),
@@ -50,6 +55,7 @@ final serverLocationsList = <LocationModel>[
   ),
   LocationModel(
     country: "Italy",
+    countryCode: "IT",
     countryFlag: kFlagItaly,
     servers: [
       ServerModel(name: "it-free#1", ip: "96.134.133.187", isPro: false),
@@ -59,6 +65,7 @@ final serverLocationsList = <LocationModel>[
   ),
   LocationModel(
     country: "Luxembourg",
+    countryCode: "LX",
     countryFlag: kFlagLuxembourg,
     servers: [
       ServerModel(name: "lx-free#1", ip: "5.149.112.247", isPro: false),

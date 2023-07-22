@@ -12,8 +12,21 @@ import '../utils/app_icons.dart';
 import '../utils/assets.dart';
 import '../utils/sizes.dart';
 
-class SessionStats extends StatelessWidget {
+final _stisFactionRate = ValueNotifier(-1);
+
+class SessionStats extends StatefulWidget {
   const SessionStats({super.key});
+
+  @override
+  State<SessionStats> createState() => _SessionStatsState();
+}
+
+class _SessionStatsState extends State<SessionStats> {
+  @override
+  void initState() {
+    super.initState();
+    _stisFactionRate.value = -1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +119,7 @@ class SessionStats extends StatelessWidget {
                               ),
                               SizedBox(height: 6),
                               Text(
-                                'AU',
+                                location?.countryCode ?? "",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -343,65 +356,96 @@ class SessionStats extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Column(
-                          children: [
-                            Icon(
-                              AppIcons.thumbsup_fill,
-                              color: AppColors.white,
-                              size: 24,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              'Good',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400,
+                        GestureDetector(
+                          onTap: () {
+                            _stisFactionRate.value = 1;
+                          },
+                          child: Column(
+                            children: [
+                              Builder(builder: (context) {
+                                return Icon(
+                                  _stisFactionRate.reactiveValue(context) == 1
+                                      ? AppIcons.thumbsup_fill
+                                      : AppIcons.thumbsup,
+                                  color: AppColors.white,
+                                  size: 24,
+                                );
+                              }),
+                              SizedBox(height: 6),
+                              Text(
+                                'Good',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Icon(
-                              AppIcons.heart,
-                              color: AppColors.white,
-                              size: 24,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              'Favourite',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400,
+                        GestureDetector(
+                          onTap: () {
+                            if (favouriteIPs.value.contains(server?.ip)) {
+                              favouriteIPs.value = [...favouriteIPs.value]..remove(server?.ip);
+                            } else {
+                              if (server != null) {
+                                favouriteIPs.value = [...favouriteIPs.value, server.ip];
+                              }
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Icon(
+                                favouriteIPs.reactiveValue(context).contains(server?.ip ?? "")
+                                    ? AppIcons.heart_fill
+                                    : AppIcons.heart,
+                                color: AppColors.white,
+                                size: 24,
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 6),
+                              Text(
+                                'Favourite',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Icon(
-                              AppIcons.thumbsdown,
-                              color: AppColors.white,
-                              size: 24,
-                            ),
-                            SizedBox(height: 6),
-                            Text(
-                              'Bad',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400,
+                        GestureDetector(
+                          onTap: () {
+                            _stisFactionRate.value = 0;
+                          },
+                          child: Column(
+                            children: [
+                              Builder(builder: (context) {
+                                return Icon(
+                                  _stisFactionRate.reactiveValue(context) == 0
+                                      ? AppIcons.thumbsdown_fill
+                                      : AppIcons.thumbsdown,
+                                  color: AppColors.white,
+                                  size: 24,
+                                );
+                              }),
+                              SizedBox(height: 6),
+                              Text(
+                                'Bad',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/pages/session_stats.dart';
 
 import '../states/notifier.dart';
@@ -18,9 +19,11 @@ class CircleButton extends StatelessWidget {
           connectionState.value = ConnectionState.waiting;
           Future.delayed(const Duration(seconds: 1)).then((value) {
             connectionState.value = ConnectionState.active;
+            currentSession.value = SessionModel(ip: selectedIPs.value.first)..startSession();
           });
         } else {
           connectionState.value = ConnectionState.none;
+          currentSession.value?.stopSession();
           Future.delayed(const Duration(milliseconds: 300)).then((value) {
             Navigator.of(context).push(
               createRoute(const SessionStats()),

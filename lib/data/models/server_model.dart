@@ -25,6 +25,6 @@ class ServerModel extends ChangeNotifier {
     final random = Random();
     const min = 10;
     ping.value = min + random.nextInt(isPro ? 90 : 180 - min);
-    if (notify) ping.notifyListeners();
+    // if (notify) ping.notifyListeners();
   }
 }

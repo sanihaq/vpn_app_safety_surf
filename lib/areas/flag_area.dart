@@ -21,7 +21,8 @@ class FlagArea extends StatelessWidget {
         (i, el) {
           final location = LocationModel.locationByIp(el);
           // final server = location?.serverByIp(el);
-          return location == null
+          return location == null ||
+                  (i != 1 && connectionState.reactiveValue(context) != ConnectionState.none)
               ? const SizedBox()
               : Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32.0),

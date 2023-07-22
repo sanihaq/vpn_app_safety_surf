@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:vpn_app/data/models/session_model.dart';
 
 import '../states/notifier.dart';
 import '../theming/colors.dart';
@@ -49,18 +50,25 @@ class LocationConditionInfo extends StatelessWidget {
                         color: AppColors.indigo,
                       ),
               ),
-              Text(
-                connectionState.reactiveValue(context) == ConnectionState.waiting
-                    ? 'CONNECTION'
-                    : '00:17:32',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.indigo,
-                  fontSize: 24,
-                  fontFamily: 'Antonio',
-                  fontWeight: FontWeight.w300,
-                  letterSpacing: 1,
-                ),
+              Builder(
+                builder: (context) {
+                  return Text(
+                    connectionState.reactiveValue(context) == ConnectionState.waiting
+                        ? 'CONNECTION'
+                        : currentSession.value == null
+                            ? "Error!"
+                            : SessionModel.formatTimeInSeconds(
+                                currentSession.value!.sessionInSeconds.reactiveValue(context)),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColors.indigo,
+                      fontSize: 24,
+                      fontFamily: 'Antonio',
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 1,
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 4),
               Text(

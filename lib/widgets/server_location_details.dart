@@ -7,6 +7,7 @@ import 'package:vpn_app/states/notifier.dart';
 
 import '../data/models/server_model.dart';
 import '../theming/colors.dart';
+import '../theming/text_styles.dart';
 import '../utils/app_icons.dart';
 import 'connection_health_indicator.dart';
 import 'power_button.dart';
@@ -51,7 +52,7 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
         ? const SizedBox()
         : Column(
             children: [
-              Divider(
+              const Divider(
                 color: AppColors.bg,
                 thickness: 2,
                 height: 0,
@@ -68,17 +69,16 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                       children: [
                         Row(
                           children: [
-                            ConnectionHealthIndicator(health: widget.server.ping.value),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6.0),
+                              child: ConnectionHealthIndicator(health: widget.server.ping.value),
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(left: 16.0),
                               child: Text(
                                 widget.server.name.toUpperCase(),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontFamily: 'Antonio',
-                                  fontWeight: FontWeight.w300,
-                                  letterSpacing: 1,
+                                style: AppTextStyles.antonioLight21Caps.copyWith(
+                                  color: AppColors.black,
                                 ),
                               ),
                             )
@@ -88,25 +88,32 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                           children: [
                             SizedBox(
                               width: 30,
-                              child: Icon(
-                                AppIcons.lightning_fill,
-                                size: 18,
-                                color: AppColors.indigo,
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: Builder(builder: (context) {
+                                  final isFavourite = favouriteIPs
+                                      .reactiveValue(context)
+                                      .contains(widget.server.ip);
+                                  final isLowPing = widget.server.ping.value < 90;
+                                  return Icon(
+                                    isFavourite
+                                        ? AppIcons.heart_fill
+                                        : isLowPing
+                                            ? AppIcons.lightning_fill
+                                            : AppIcons.globesimple,
+                                    size: 18,
+                                    color: isFavourite ? AppColors.pink : AppColors.indigo,
+                                  );
+                                }),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
+                              padding: const EdgeInsets.only(left: 16.0, top: 4),
                               child: Builder(builder: (context) {
                                 final ping = widget.server.ping.value; //reactiveValue(context);
-                                return Text(
-                                  'Ping: $ping ms',
-                                  style: TextStyle(
-                                    color: Color(0xFF7C858D),
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                );
+                                return Text('Ping: $ping ms',
+                                    style: AppTextStyles.poppins16Regular
+                                        .copyWith(color: AppColors.lightStateGray));
                               }),
                             )
                           ],

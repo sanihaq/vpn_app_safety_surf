@@ -7,6 +7,7 @@ import 'package:vpn_app/data/models/server_model.dart';
 import 'package:vpn_app/data/servers_list_data.dart';
 import 'package:vpn_app/states/notifier.dart';
 import 'package:vpn_app/theming/colors.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/utils/assets.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
 import 'package:vpn_app/widgets/connection_health_indicator.dart';
@@ -61,11 +62,8 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
             Text(
               'Server location',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: AppTextStyles.poppins16SemiBold.copyWith(
                 color: Colors.black,
-                fontSize: 16,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: 30),
@@ -133,32 +131,32 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Row(
                               children: [
-                                Image.asset(kEmojiSalut, width: 28),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2.0),
+                                  child: Image.asset(kEmojiSalut, width: 28),
+                                ),
                                 Expanded(
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0, vertical: 18),
                                         child: Text(
                                           'FREE 7 DAYS UNLIM',
-                                          style: TextStyle(
+                                          style: AppTextStyles.antonioLight21Caps.copyWith(
                                             color: Colors.black,
-                                            fontSize: 18,
-                                            fontFamily: 'Antonio',
-                                            fontWeight: FontWeight.w300,
-                                            letterSpacing: 1,
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                PowerButton(),
+                                const PowerButton(),
                               ],
                             ),
                           ),
                         ),
-                        SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         Expanded(
                           child: SingleChildScrollView(
                             child: Column(

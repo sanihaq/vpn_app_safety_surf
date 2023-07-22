@@ -1,5 +1,6 @@
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:flutter/material.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/utils/sizes.dart';
 import 'package:window_manager/window_manager.dart' show WindowOptions, windowManager;
 
@@ -131,18 +132,24 @@ class _HomePageState extends State<HomePage> {
                                           : kSurfIconPlain,
                                       width: kSizesSurfLogo,
                                     ),
-                                    const Row(
+                                    const SizedBox(height: 4),
+                                    Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          'SAFETY SURF',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Color(0xFF64D2FF),
-                                            fontSize: 24,
-                                            fontFamily: 'Antonio',
-                                          ),
-                                        ),
+                                        Builder(builder: (context) {
+                                          return Text(
+                                            'SAFETY SURF',
+                                            textAlign: TextAlign.center,
+                                            style: AppTextStyles.antonioLight26Caps.copyWith(
+                                              color: connectionState.reactiveValue(context) ==
+                                                      ConnectionState.none
+                                                  ? AppColors.tealBlue
+                                                  : AppColors.white,
+                                              fontSize: 24,
+                                              fontFamily: 'Antonio',
+                                            ),
+                                          );
+                                        }),
                                       ],
                                     )
                                   ],

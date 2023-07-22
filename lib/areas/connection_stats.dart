@@ -5,6 +5,7 @@ import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/utils/app_icons.dart';
 
 import '../states/notifier.dart';
+import '../theming/text_styles.dart';
 import '../widgets/connection_stats_item.dart';
 
 class ConnectionStats extends StatefulWidget {
@@ -22,18 +23,15 @@ class _ConnectionStatsState extends State<ConnectionStats> {
         Text(
           'Connected',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 15,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
+          style: AppTextStyles.poppins16SemiBold.copyWith(
+            color: AppColors.white,
           ),
         ),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ConnectionStatsItem(
+            const ConnectionStatsItem(
               icon: AppIcons.caretdoubledown,
               title: "158.2",
               subtitle: "Mb/s",
@@ -48,7 +46,7 @@ class _ConnectionStatsState extends State<ConnectionStats> {
                 subtitle: "Server",
               );
             }),
-            ConnectionStatsItem(
+            const ConnectionStatsItem(
               icon: AppIcons.caretdoubleup,
               title: "158.2",
               subtitle: "Mb/s",

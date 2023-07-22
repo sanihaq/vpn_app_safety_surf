@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/colors.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
 
 import '../utils/app_icons.dart';
@@ -29,27 +30,20 @@ class GetProPage extends StatelessWidget {
                   kSurfIconPlain,
                   width: kSizesSurfLogo,
                 ),
-                const Text.rich(
+                const SizedBox(height: 4),
+                Text.rich(
                   TextSpan(
                     children: [
                       TextSpan(
                         text: 'PRO',
-                        style: TextStyle(
-                          color: Color(0xFF64D2FF),
-                          fontSize: 24,
-                          fontFamily: 'Antonio',
-                          fontWeight: FontWeight.w300,
-                          letterSpacing: 1,
+                        style: AppTextStyles.antonioLight26Caps.copyWith(
+                          color: AppColors.tealBlue,
                         ),
                       ),
                       TextSpan(
                         text: ' SAFETY SURF',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontFamily: 'Antonio',
-                          fontWeight: FontWeight.w300,
-                          letterSpacing: 1,
+                        style: AppTextStyles.antonioLight26Caps.copyWith(
+                          color: AppColors.white,
                         ),
                       ),
                     ],
@@ -88,22 +82,14 @@ class GetProPage extends StatelessWidget {
                                 Text(
                                   e.value["title"]!,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: AppTextStyles.poppins16SemiBold
+                                      .copyWith(color: AppColors.white),
                                 ),
                                 Text(
                                   e.value["subtitle"]!,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                  style: AppTextStyles.poppins16Regular
+                                      .copyWith(color: AppColors.white),
                                 )
                               ],
                             ))
@@ -170,22 +156,16 @@ class GetProPage extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   e.value["title"]!,
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 21,
-                                                    fontFamily: 'Antonio',
-                                                    fontWeight: FontWeight.w300,
+                                                  style: AppTextStyles.antonioLight21Caps.copyWith(
+                                                    color: AppColors.black,
                                                   ),
                                                 ),
-                                                SizedBox(height: 4),
+                                                const SizedBox(height: 4),
                                                 Text(
                                                   e.value["subtitle"]!,
                                                   textAlign: TextAlign.start,
-                                                  style: TextStyle(
+                                                  style: AppTextStyles.poppins16Regular.copyWith(
                                                     color: AppColors.lightStateGray,
-                                                    fontSize: 14,
-                                                    fontFamily: 'Poppins',
-                                                    fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
                                               ],
@@ -193,8 +173,8 @@ class GetProPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 12.0),
+                                      const Padding(
+                                        padding: EdgeInsets.only(right: 12.0),
                                         child: PowerButton(),
                                       ),
                                     ],
@@ -209,21 +189,21 @@ class GetProPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 28),
-                const Column(
+                Column(
                   children: [
-                    Icon(
+                    const Icon(
                       AppIcons.shoppingcartsimple,
                       size: 32,
                       color: AppColors.white,
                     ),
-                    Text(
-                      'Restore purchases',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(
+                        'Restore purchases',
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.poppins16Regular.copyWith(
+                          color: AppColors.white,
+                        ),
                       ),
                     ),
                   ],

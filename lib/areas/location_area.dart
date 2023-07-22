@@ -1,12 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 
 import '../data/models/location_model.dart';
 import '../states/notifier.dart';
 import '../theming/colors.dart';
 import '../utils/app_icons.dart';
-import '../utils/assets.dart';
 import '../widgets/connection_health_indicator.dart';
 
 class LocatonArea extends StatelessWidget {
@@ -28,7 +28,7 @@ class LocatonArea extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 98,
                     child: Icon(
                       AppIcons.lockkeyopen,
@@ -41,14 +41,9 @@ class LocatonArea extends StatelessWidget {
                     child: Text(
                       location.country.toUpperCase(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: AppTextStyles.antonioLight26Caps.copyWith(
                         color: AppColors.black,
                         overflow: TextOverflow.fade,
-                        fontSize: 26,
-                        fontFamily: 'Antonio',
-                        fontWeight: FontWeight.w300,
-                        // height: 32,
-                        letterSpacing: 1,
                       ),
                     ),
                   ),
@@ -63,7 +58,7 @@ class LocatonArea extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,11 +68,8 @@ class LocatonArea extends StatelessWidget {
                     child: Text(
                       'Auto',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: AppTextStyles.poppins16Regular.copyWith(
                         color: AppColors.lightStateGray,
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ),
@@ -86,12 +78,8 @@ class LocatonArea extends StatelessWidget {
                     child: Text(
                       server.ip,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF7C858D),
-                        overflow: TextOverflow.fade,
-                        fontSize: 16,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w400,
+                      style: AppTextStyles.poppins16Regular.copyWith(
+                        color: AppColors.lightStateGray,
                       ),
                     ),
                   ),
@@ -102,11 +90,8 @@ class LocatonArea extends StatelessWidget {
                       return Text(
                         "$ping ms",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF7C858D),
-                          fontSize: 16,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
+                        style: AppTextStyles.poppins16Regular.copyWith(
+                          color: AppColors.lightStateGray,
                         ),
                       );
                     }),

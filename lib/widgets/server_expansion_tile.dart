@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/states/notifier.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 
 import '../data/models/location_model.dart';
 import '../theming/colors.dart';
@@ -52,11 +53,16 @@ class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
         children: [
           Image.asset(
             widget.location.countryFlag,
-            width: 24,
+            width: 28,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: Text(widget.location.country.toUpperCase()),
+            child: Text(
+              widget.location.country.toUpperCase(),
+              style: AppTextStyles.antonioLight21Caps.copyWith(
+                color: AppColors.black,
+              ),
+            ),
           ),
         ],
       ),

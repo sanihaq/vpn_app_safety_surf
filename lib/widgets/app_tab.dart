@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 
 import '../theming/colors.dart';
 
@@ -34,11 +35,8 @@ class AppTab extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTextStyles.poppins16Regular.copyWith(
               color: isActive ? color ?? AppColors.indigo : AppColors.lightStateGray,
-              fontSize: 14,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
             ),
           )
         ],

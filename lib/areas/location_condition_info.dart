@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/data/models/session_model.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifier.dart';
 import '../theming/colors.dart';
@@ -15,10 +16,10 @@ class LocationConditionInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return connectionState.reactiveValue(context) == ConnectionState.none
-        ? const Column(
+        ? Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(6.0),
+              const Padding(
+                padding: EdgeInsets.all(6.0),
                 child: Icon(
                   AppIcons.lightning_fill,
                   color: AppColors.indigo,
@@ -28,11 +29,8 @@ class LocationConditionInfo extends StatelessWidget {
               Text(
                 'Optimal location',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF5E5CE6),
-                  fontSize: 16,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
+                style: AppTextStyles.poppins16Regular.copyWith(
+                  color: const Color(0xFF5E5CE6),
                 ),
               )
             ],
@@ -60,12 +58,8 @@ class LocationConditionInfo extends StatelessWidget {
                             : SessionModel.formatTimeInSeconds(
                                 currentSession.value!.sessionInSeconds.reactiveValue(context)),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: AppTextStyles.antonioLight26Caps.copyWith(
                       color: AppColors.indigo,
-                      fontSize: 24,
-                      fontFamily: 'Antonio',
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 1,
                     ),
                   );
                 },
@@ -76,11 +70,8 @@ class LocationConditionInfo extends StatelessWidget {
                     ? 'Assigning IP'
                     : 'Session',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: AppTextStyles.poppins16Regular.copyWith(
                   color: AppColors.lightStateGray,
-                  fontSize: 14,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
                 ),
               ),
             ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/pages/session_stats.dart';
+import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifier.dart';
 import '../utils/create_route.dart';
@@ -60,11 +61,7 @@ class CircleButton extends StatelessWidget {
                     ? 'STOP'
                     : 'OFF',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 22,
-              fontFamily: 'Antonio',
-              fontWeight: FontWeight.w300,
-              letterSpacing: 2,
+            style: AppTextStyles.antonioLight26Caps.copyWith(
               foreground: Paint()
                 ..shader = const LinearGradient(
                   begin: Alignment.topLeft,

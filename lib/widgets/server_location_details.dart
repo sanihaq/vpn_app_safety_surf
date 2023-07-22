@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:vpn_app/states/notifier.dart';
 
 import '../data/models/server_model.dart';
 import '../theming/colors.dart';
@@ -111,7 +113,12 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                         ),
                       ],
                     ),
-                    PowerButton()
+                    PowerButton(
+                      onTap: () {
+                        selectedIPs.value = [widget.server.ip, ...selectedIPs.value..removeLast()];
+                        Navigator.of(context).pop();
+                      },
+                    )
                   ],
                 ),
               ),

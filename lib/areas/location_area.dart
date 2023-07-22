@@ -100,7 +100,7 @@ class LocatonArea extends StatelessWidget {
                     child: Builder(builder: (context) {
                       final ping = server.ping.reactiveValue(context);
                       return Text(
-                        "$ping",
+                        "$ping ms",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Color(0xFF7C858D),

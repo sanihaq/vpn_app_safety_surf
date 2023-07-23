@@ -19,7 +19,7 @@ class LocatonArea extends StatelessWidget {
     final selectedIp = selectedIPs.reactiveValue(context).firstOrNull ?? "";
     final location = LocationModel.locationByIp(selectedIp);
     final server = location?.serverByIp(selectedIp);
-    server?.checkPing(notify: false);
+    server?.checkPing();
     return location == null || server == null
         ? const SizedBox()
         : Column(

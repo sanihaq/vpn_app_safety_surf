@@ -21,10 +21,9 @@ class ServerModel extends ChangeNotifier {
     return serverLocationsList.firstWhere((e) => e.servers.any((el) => el.ip == ip));
   }
 
-  void checkPing({required bool notify}) {
+  void checkPing() {
     final random = Random();
     const min = 10;
     ping.value = min + random.nextInt(isPro ? 90 : 180 - min);
-    // if (notify) ping.notifyListeners();
   }
 }

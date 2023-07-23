@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/states/notifier.dart';
@@ -32,10 +31,10 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
   @override
   void initState() {
     super.initState();
-    widget.server.checkPing(notify: false);
+    Future.delayed(Duration.zero).then((value) => widget.server.checkPing());
     // timer = Timer.periodic(
     //   const Duration(seconds: 10),
-    //   (Timer t) => widget.server.checkPing(notify: true),
+    //   (Timer t) => widget.server.checkPing(),
     // );
   }
 

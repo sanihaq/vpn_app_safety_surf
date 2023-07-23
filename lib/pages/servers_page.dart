@@ -184,6 +184,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                                 child: LocationExpansoinTile(
                                   location: e,
                                   showOnlyFavourite: true,
+                                  isExpanded: true,
                                 ),
                               ),
                             )

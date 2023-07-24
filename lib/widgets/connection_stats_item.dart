@@ -29,7 +29,7 @@ class ConnectionStatsItem extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 22,
             fontFamily: 'Antonio',
@@ -41,7 +41,7 @@ class ConnectionStatsItem extends StatelessWidget {
         Text(
           subtitle,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 14,
             fontFamily: 'Poppins',

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/states/notifiers.dart';
-import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
 
 import '../theming/text_styles.dart';

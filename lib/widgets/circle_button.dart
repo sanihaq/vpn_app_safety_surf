@@ -3,7 +3,6 @@ import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/pages/session_stats.dart';
-import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifiers.dart';

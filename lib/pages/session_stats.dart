@@ -329,18 +329,18 @@ class _SessionStatsState extends State<SessionStats> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if (favouriteIPs.value.contains(server?.ip)) {
-                            favouriteIPs.value = [...favouriteIPs.value]..remove(server?.ip);
+                          if (favoriteIPs.value.contains(server?.ip)) {
+                            favoriteIPs.value = [...favoriteIPs.value]..remove(server?.ip);
                           } else {
                             if (server != null) {
-                              favouriteIPs.value = [...favouriteIPs.value, server.ip];
+                              favoriteIPs.value = [...favoriteIPs.value, server.ip];
                             }
                           }
                         },
                         child: Column(
                           children: [
                             Icon(
-                              favouriteIPs.reactiveValue(context).contains(server?.ip ?? "")
+                              favoriteIPs.reactiveValue(context).contains(server?.ip ?? "")
                                   ? AppIcons.heart_fill
                                   : AppIcons.heart,
                               color: AppColors.white,

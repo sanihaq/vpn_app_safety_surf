@@ -18,11 +18,11 @@ class PowerButton extends StatelessWidget {
       child: Container(
         width: 48,
         height: 48,
-        decoration: ShapeDecoration(
+        decoration: const ShapeDecoration(
           color: AppColors.yellow,
           shape: OvalBorder(),
         ),
-        child: Icon(
+        child: const Icon(
           AppIcons.power,
           size: 28,
         ),

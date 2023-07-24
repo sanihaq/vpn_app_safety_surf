@@ -30,7 +30,7 @@ class ConnectionHealthIndicator extends StatelessWidget {
               height: 6,
               decoration: ShapeDecoration(
                 shape: const OvalBorder(),
-                color: (isGreen ? AppColors.green : AppColors.yellow).withOpacity(opacity),
+                color: (isGreen ? AppColors.green : AppColors.orange).withOpacity(opacity),
               ),
             ),
           );

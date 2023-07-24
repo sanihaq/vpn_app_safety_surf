@@ -90,18 +90,19 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Builder(builder: (context) {
-                                  final isFavourite = favouriteIPs
-                                      .reactiveValue(context)
-                                      .contains(widget.server.ip);
+                                  final isFavorite =
+                                      favoriteIPs.reactiveValue(context).contains(widget.server.ip);
                                   final isLowPing = widget.server.ping.value < 90;
                                   return Icon(
-                                    isFavourite
+                                    isFavorite
                                         ? AppIcons.heart_fill
                                         : isLowPing
                                             ? AppIcons.lightning_fill
                                             : AppIcons.globesimple,
                                     size: 18,
-                                    color: isFavourite ? AppColors.pink : AppColors.indigo,
+                                    color: isFavorite
+                                        ? AppColors.pink
+                                        : Theme.of(context).primaryColor,
                                   );
                                 }),
                               ),

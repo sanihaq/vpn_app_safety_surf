@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
-import '../theming/colors.dart';
-
 class AppTab extends StatelessWidget {
   const AppTab({
     super.key,

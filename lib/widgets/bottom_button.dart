@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../theming/colors.dart';
-
 class BottomNavigationButton extends StatelessWidget {
   const BottomNavigationButton({
     super.key,

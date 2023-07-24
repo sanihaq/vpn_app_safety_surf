@@ -1,22 +1,16 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/data/models/location_model.dart';
-import 'package:vpn_app/data/models/server_model.dart';
 import 'package:vpn_app/data/servers_list_data.dart';
 import 'package:vpn_app/states/notifiers.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/utils/assets.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
-import 'package:vpn_app/widgets/connection_health_indicator.dart';
 import 'package:vpn_app/widgets/power_button.dart';
 
 import '../utils/app_icons.dart';
 import '../widgets/app_tab.dart';
 import '../widgets/server_expansion_tile.dart';
-import '../widgets/server_location_details.dart';
 
 class ServersPage extends StatefulWidget {
   const ServersPage({super.key});
@@ -179,7 +173,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                     SingleChildScrollView(
                       child: Column(
                         children: serverList
-                            .where((e) => e.servers.any((el) => favouriteIPs.value.contains(el.ip)))
+                            .where((e) => e.servers.any((el) => favoriteIPs.value.contains(el.ip)))
                             .map(
                               (e) => Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),

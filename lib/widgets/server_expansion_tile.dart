@@ -85,7 +85,7 @@ class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
         });
       },
       children: widget.location.servers
-          .where((e) => widget.showOnlyFavourite ? favouriteIPs.value.contains(e.ip) : true)
+          .where((e) => widget.showOnlyFavourite ? favoriteIPs.value.contains(e.ip) : true)
           .map((e) => ServerLocationDetails(
                 server: e,
                 showIfOptimal: widget.showOnlyOptimal,

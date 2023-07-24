@@ -1,3 +1,4 @@
+import 'package:flutter_persistent_value_notifier/flutter_persistent_value_notifier.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/text_styles.dart';
@@ -9,7 +10,7 @@ import 'areas/connection_stats.dart';
 import 'areas/flag_area.dart';
 import 'areas/location_area.dart';
 import 'areas/location_condition_info.dart';
-import 'states/notifier.dart';
+import 'states/notifiers.dart';
 import 'theming/colors.dart';
 import 'utils/assets.dart';
 import 'utils/platform_details.dart';
@@ -19,6 +20,7 @@ import 'widgets/overflow_circle.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initPersistentValueNotifier();
 
   if (PlatformDetails.instance.isDesktop && !PlatformDetails.instance.isWeb) {
     await windowManager.ensureInitialized();
@@ -41,9 +43,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeValue = appThemeMode.reactiveValue(context);
     return MaterialApp(
       title: 'VPN App',
-      themeMode: appThemeMode.reactiveValue(context),
+      themeMode: themeModeValue == 0
+          ? ThemeMode.dark
+          : themeModeValue == 1
+              ? ThemeMode.light
+              : ThemeMode.system,
       theme: ThemeData(
         brightness: Brightness.light,
         useMaterial3: true,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vpn_app/states/notifier.dart';
+import 'package:vpn_app/states/notifiers.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
 import '../data/models/location_model.dart';

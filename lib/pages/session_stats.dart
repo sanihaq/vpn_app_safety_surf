@@ -7,7 +7,7 @@ import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
 
 import '../data/models/location_model.dart';
-import '../states/notifier.dart';
+import '../states/notifiers.dart';
 import '../utils/app_icons.dart';
 
 final _stisFactionRate = ValueNotifier(-1);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
-import 'package:vpn_app/states/notifier.dart';
+import 'package:vpn_app/states/notifiers.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
 
@@ -83,23 +83,35 @@ class SettingsPage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    DropdownButton<ThemeMode>(
-                                      value: appThemeMode.reactiveValue(context),
-                                      style: AppTextStyles.poppins16Regular
-                                          .copyWith(color: Theme.of(context).indicatorColor),
-                                      items: const [
-                                        DropdownMenuItem(
-                                            value: ThemeMode.system, child: Text("System")),
-                                        DropdownMenuItem(
-                                            value: ThemeMode.light, child: Text("Light")),
-                                        DropdownMenuItem(
-                                            value: ThemeMode.dark, child: Text("Dark")),
-                                      ],
-                                      onChanged: (mode) {
-                                        appThemeMode.value = mode ?? ThemeMode.system;
-                                        Navigator.of(context).pop();
-                                      },
-                                    )
+                                    Builder(builder: (context) {
+                                      final themeModeValue = appThemeMode.reactiveValue(context);
+
+                                      return DropdownButton<ThemeMode>(
+                                        value: themeModeValue == 0
+                                            ? ThemeMode.dark
+                                            : themeModeValue == 1
+                                                ? ThemeMode.light
+                                                : ThemeMode.system,
+                                        style: AppTextStyles.poppins16Regular
+                                            .copyWith(color: Theme.of(context).indicatorColor),
+                                        items: const [
+                                          DropdownMenuItem(
+                                              value: ThemeMode.system, child: Text("System")),
+                                          DropdownMenuItem(
+                                              value: ThemeMode.light, child: Text("Light")),
+                                          DropdownMenuItem(
+                                              value: ThemeMode.dark, child: Text("Dark")),
+                                        ],
+                                        onChanged: (mode) {
+                                          appThemeMode.value = mode == ThemeMode.dark
+                                              ? 0
+                                              : mode == ThemeMode.light
+                                                  ? 1
+                                                  : -1;
+                                          Navigator.of(context).pop();
+                                        },
+                                      );
+                                    })
                                   ],
                                 ),
                               ),

@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 
-import '../states/notifier.dart';
+import '../states/notifiers.dart';
 import '../theming/colors.dart';
 
 class Circles extends StatelessWidget {

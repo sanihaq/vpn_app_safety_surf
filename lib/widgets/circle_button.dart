@@ -6,7 +6,7 @@ import 'package:vpn_app/pages/session_stats.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
-import '../states/notifier.dart';
+import '../states/notifiers.dart';
 import '../utils/create_route.dart';
 
 class CircleButton extends StatelessWidget {

@@ -5,7 +5,7 @@ import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/data/models/location_model.dart';
 import 'package:vpn_app/data/models/server_model.dart';
 import 'package:vpn_app/data/servers_list_data.dart';
-import 'package:vpn_app/states/notifier.dart';
+import 'package:vpn_app/states/notifiers.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/utils/assets.dart';
@@ -65,7 +65,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
               'Server location',
               textAlign: TextAlign.center,
               style: AppTextStyles.poppins16SemiBold.copyWith(
-                color: Colors.black,
+                color: Theme.of(context).indicatorColor,
               ),
             ),
             const SizedBox(height: 30),

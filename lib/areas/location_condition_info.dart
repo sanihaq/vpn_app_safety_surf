@@ -3,7 +3,7 @@ import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
-import '../states/notifier.dart';
+import '../states/notifiers.dart';
 import '../utils/app_icons.dart';
 import '../widgets/spinner_widget.dart';
 

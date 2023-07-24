@@ -4,7 +4,7 @@ import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
 import '../data/models/location_model.dart';
-import '../states/notifier.dart';
+import '../states/notifiers.dart';
 import '../utils/app_icons.dart';
 import '../widgets/connection_health_indicator.dart';
 

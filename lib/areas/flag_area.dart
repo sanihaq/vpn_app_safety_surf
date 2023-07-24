@@ -2,7 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:vpn_app/data/models/location_model.dart';
-import 'package:vpn_app/states/notifier.dart';
+import 'package:vpn_app/states/notifiers.dart';
 import 'package:collection/collection.dart';
 
 import '../utils/assets.dart';

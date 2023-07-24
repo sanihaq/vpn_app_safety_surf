@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_persistent_value_notifier/flutter_persistent_value_notifier.dart';
 
 import '../data/models/session_model.dart';
 
@@ -11,4 +12,5 @@ final selectedIPs =
 
 final currentSession = ValueNotifier<SessionModel?>(null);
 
-final appThemeMode = ValueNotifier(ThemeMode.system);
+final appThemeMode =
+    PersistentValueNotifier(sharedPreferencesKey: 'app-theme-mode', initialValue: -1);

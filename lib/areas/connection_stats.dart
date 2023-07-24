@@ -4,7 +4,7 @@ import 'package:vpn_app/data/models/location_model.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/utils/app_icons.dart';
 
-import '../states/notifier.dart';
+import '../states/notifiers.dart';
 import '../theming/text_styles.dart';
 import '../widgets/connection_stats_item.dart';
 

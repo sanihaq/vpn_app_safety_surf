@@ -18,6 +18,7 @@ dependencies:
   gradient_borders: ^1.0.0
   flutter_reactive_value: ^1.0.4
   window_manager: ^0.3.5
+  flutter_persistent_value_notifier: ^1.0.2
 
 dev_dependencies:
   flutter_test:

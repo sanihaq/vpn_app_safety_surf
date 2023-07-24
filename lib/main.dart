@@ -178,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.symmetric(vertical: 20.0),
                             child: FlagArea(),
                           ),
-                          LocatonArea(),
+                          LocationArea(),
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 30.0),
                             child: BottomNavbar(),

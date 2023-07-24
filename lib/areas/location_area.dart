@@ -8,8 +8,8 @@ import '../states/notifier.dart';
 import '../utils/app_icons.dart';
 import '../widgets/connection_health_indicator.dart';
 
-class LocatonArea extends StatelessWidget {
-  const LocatonArea({
+class LocationArea extends StatelessWidget {
+  const LocationArea({
     super.key,
   });
 
@@ -18,7 +18,7 @@ class LocatonArea extends StatelessWidget {
     final selectedIp = selectedIPs.reactiveValue(context).firstOrNull ?? "";
     final location = LocationModel.locationByIp(selectedIp);
     final server = location?.serverByIp(selectedIp);
-    server?.checkPing();
+    Future.delayed(Duration.zero).then((value) => server?.checkPing());
     return location == null || server == null
         ? const SizedBox()
         : Column(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/pages/session_stats.dart';
+import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifier.dart';
@@ -35,21 +37,41 @@ class CircleButton extends StatelessWidget {
       child: Container(
         width: 99,
         height: 99,
-        decoration: ShapeDecoration(
+        decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
-          shape: const OvalBorder(
-            side: BorderSide(
-              strokeAlign: BorderSide.strokeAlignInside,
-              color: Color.fromARGB(255, 243, 245, 247),
-              width: 1,
+          gradient: Theme.of(context).brightness == Brightness.dark &&
+                  connectionState.reactiveValue(context) == ConnectionState.none
+              ? const LinearGradient(
+                  begin: Alignment(-0.08, 1.00),
+                  end: Alignment(0.08, -1),
+                  colors: [Color(0xFF5E5CE6), Color(0xFF64D2FF)],
+                )
+              : null,
+          border: GradientBoxBorder(
+            width: 3,
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: Theme.of(context).brightness == Brightness.dark
+                  ? const [
+                      Color.fromRGBO(33, 45, 64, 0),
+                      Color.fromRGBO(33, 45, 64, 0.3),
+                    ]
+                  : const [
+                      Color.fromRGBO(243, 245, 247, 0),
+                      Color.fromRGBO(243, 245, 247, 1),
+                    ],
             ),
           ),
-          shadows: const [
+          shape: BoxShape.circle,
+          boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(31, 122, 122, 122),
-              blurRadius: 10,
-              spreadRadius: 1,
-              offset: Offset(0, 1),
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? const Color(0x3D000000)
+                  : const Color(0x14000000),
+              blurRadius: 24,
+              offset: const Offset(0, 16),
+              spreadRadius: 0,
             )
           ],
         ),

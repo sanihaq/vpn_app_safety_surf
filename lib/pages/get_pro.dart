@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/widgets/bottom_button.dart';
+import 'package:vpn_app/widgets/gradient_text.dart';
 
 import '../utils/app_icons.dart';
 import '../utils/assets.dart';
@@ -14,6 +15,12 @@ class GetProPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var text = Text(
+      'SAFETY SURF',
+      style: AppTextStyles.antonioLight26Caps.copyWith(
+        color: AppColors.white,
+      ),
+    );
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -30,28 +37,27 @@ class GetProPage extends StatelessWidget {
               children: [
                 const SizedBox(height: 60),
                 Image.asset(
-                  kSurfIconPlain,
+                  Theme.of(context).brightness == Brightness.dark
+                      ? kSurfIconGradient
+                      : kSurfIconPlain,
                   width: kSizesSurfLogo,
                 ),
                 const SizedBox(height: 4),
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'PRO',
-                        style: AppTextStyles.antonioLight26Caps.copyWith(
-                          color: AppColors.tealBlue,
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'PRO ',
+                      style: AppTextStyles.antonioLight26Caps.copyWith(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.white
+                            : AppColors.tealBlue,
                       ),
-                      TextSpan(
-                        text: ' SAFETY SURF',
-                        style: AppTextStyles.antonioLight26Caps.copyWith(
-                          color: AppColors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
+                    ),
+                    Theme.of(context).brightness == Brightness.dark
+                        ? GradientText(text: text)
+                        : text,
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(30.0),

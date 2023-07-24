@@ -8,6 +8,7 @@ import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifiers.dart';
 import '../utils/create_route.dart';
+import 'gradient_text.dart';
 
 class CircleButton extends StatelessWidget {
   const CircleButton({
@@ -16,6 +17,19 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var text = Text(
+      connectionState.reactiveValue(context) == ConnectionState.none
+          ? 'START'
+          : connectionState.reactiveValue(context) == ConnectionState.waiting
+              ? 'STOP'
+              : 'OFF',
+      textAlign: TextAlign.center,
+      style: AppTextStyles.antonioLight26Caps.copyWith(
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Theme.of(context).indicatorColor
+            : null,
+      ),
+    );
     return GestureDetector(
       onTap: () {
         if (connectionState.value == ConnectionState.none) {
@@ -76,32 +90,7 @@ class CircleButton extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Text(
-            connectionState.reactiveValue(context) == ConnectionState.none
-                ? 'START'
-                : connectionState.reactiveValue(context) == ConnectionState.waiting
-                    ? 'STOP'
-                    : 'OFF',
-            textAlign: TextAlign.center,
-            style: AppTextStyles.antonioLight26Caps.copyWith(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Theme.of(context).indicatorColor
-                  : null,
-              foreground: Theme.of(context).brightness == Brightness.dark
-                  ? null
-                  : (Paint()
-                    ..shader = const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomLeft,
-                      colors: <Color>[
-                        Color.fromARGB(255, 100, 210, 255),
-                        Color.fromARGB(255, 94, 92, 230),
-                      ],
-                    ).createShader(
-                      const Rect.fromLTWH(0.0, 0.0, 51.0, 31.0),
-                    )),
-            ),
-          ),
+          child: Theme.of(context).brightness == Brightness.dark ? text : GradientText(text: text),
         ),
       ),
     );

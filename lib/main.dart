@@ -3,6 +3,7 @@ import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:flutter/material.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 import 'package:vpn_app/utils/sizes.dart';
+import 'package:vpn_app/widgets/gradient_text.dart';
 import 'package:window_manager/window_manager.dart' show WindowOptions, windowManager;
 
 import 'areas/bottom_navbar.dart';
@@ -160,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Builder(builder: (context) {
-                                        return Text(
+                                        var text = Text(
                                           'SAFETY SURF',
                                           textAlign: TextAlign.center,
                                           style: AppTextStyles.antonioLight26Caps.copyWith(
@@ -172,6 +173,10 @@ class _HomePageState extends State<HomePage> {
                                             fontFamily: 'Antonio',
                                           ),
                                         );
+                                        return connectionState.reactiveValue(context) ==
+                                                ConnectionState.none
+                                            ? GradientText(text: text)
+                                            : text;
                                       }),
                                     ],
                                   )

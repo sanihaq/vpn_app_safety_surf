@@ -97,6 +97,7 @@ class SettingsPage extends StatelessWidget {
                                       ],
                                       onChanged: (mode) {
                                         appThemeMode.value = mode ?? ThemeMode.system;
+                                        Navigator.of(context).pop();
                                       },
                                     )
                                   ],

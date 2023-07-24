@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 
 import '../theming/colors.dart';
 
@@ -7,16 +8,16 @@ class OverflowCircle extends StatelessWidget {
   const OverflowCircle({
     super.key,
     required this.size,
-    this.paddonfOffset = 0,
-    this.littleCirlceSizes = const [],
+    this.paddingOffset = 0,
+    this.littleCircleSizes = const [],
   });
 
   final double size;
 
   /// only pass if the `OverflowCircle` is in top
-  final double paddonfOffset;
+  final double paddingOffset;
 
-  final List<double> littleCirlceSizes;
+  final List<double> littleCircleSizes;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class OverflowCircle extends StatelessWidget {
       maxWidth: size,
       maxHeight: size,
       child: Container(
-        height: size - paddonfOffset,
+        height: size - paddingOffset,
         width: size,
         decoration: ShapeDecoration(
           color: Theme.of(context).canvasColor,
@@ -32,33 +33,23 @@ class OverflowCircle extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         child: Stack(
-          children: littleCirlceSizes.mapIndexed(
+          children: littleCircleSizes.mapIndexed(
             (i, size) {
-              const innerBorder = 1.5;
               return Align(
-                alignment: paddonfOffset != 0 ? Alignment.bottomCenter : Alignment.topCenter,
+                alignment: paddingOffset != 0 ? Alignment.bottomCenter : Alignment.topCenter,
                 child: Transform.translate(
-                  offset: paddonfOffset != 0 ? Offset(0, size / 2) : Offset(0, -size / 2),
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: size,
-                        height: size,
-                        decoration: getCircleDecoration(const Color(0xFF7C858D)),
-                      ),
-                      Transform.translate(
-                        offset: const Offset(innerBorder / 2, innerBorder / 2),
-                        child: Container(
-                          width: size - innerBorder,
-                          height: size - innerBorder,
-                          decoration: const ShapeDecoration(
-                            color: AppColors.white,
-                            shape: OvalBorder(),
-                          ),
-                          // decoration: getCircleDecoration(AppColors.white),
-                        ),
-                      ),
-                    ],
+                  offset: paddingOffset != 0 ? Offset(0, size / 2) : Offset(0, -size / 2),
+                  child: Container(
+                    width: size,
+                    height: size,
+                    decoration: getCircleDecoration(
+                      Theme.of(context).brightness == Brightness.light
+                          ? AppColors.white
+                          : const Color.fromRGBO(147, 167, 200, 0.2),
+                      Theme.of(context).brightness == Brightness.light
+                          ? const Color.fromRGBO(124, 133, 141, 0.2)
+                          : null,
+                    ),
                   ),
                 ),
               );
@@ -69,21 +60,23 @@ class OverflowCircle extends StatelessWidget {
     );
   }
 
-  ShapeDecoration getCircleDecoration(Color color) {
-    return ShapeDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        // stops: const [1, 0.1, 0, 0.1, 1],
-        colors: [
-          color.withOpacity(0.2),
-          color.withOpacity(0),
-          color.withOpacity(0),
-          color.withOpacity(0),
-          color.withOpacity(0.2),
-        ],
-      ),
-      shape: const OvalBorder(),
+  BoxDecoration getCircleDecoration(Color color, [Color? borerColor]) {
+    LinearGradient linearGradient(Color color) => LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: const [0, 0.37, 0.5, 0.63, 1],
+          colors: [
+            color,
+            color.withOpacity(0),
+            color.withOpacity(0),
+            color.withOpacity(0),
+            color,
+          ],
+        );
+    return BoxDecoration(
+      border: GradientBoxBorder(gradient: linearGradient(borerColor ?? color), width: 1),
+      gradient: linearGradient(color),
+      shape: BoxShape.circle,
     );
   }
 }

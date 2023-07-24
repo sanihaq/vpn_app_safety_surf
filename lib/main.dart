@@ -109,15 +109,15 @@ class _HomePageState extends State<HomePage> {
                           padding: EdgeInsets.only(bottom: size),
                           child: OverflowCircle(
                             size: size * 0.89,
-                            paddonfOffset: bottomPadding * 0.5,
-                            littleCirlceSizes: littleCircleSizes,
+                            paddingOffset: bottomPadding * 0.5,
+                            littleCircleSizes: littleCircleSizes,
                           ),
                         ),
                       Padding(
                         padding: EdgeInsets.only(top: size - (bottomPadding * 0.78)),
                         child: OverflowCircle(
                           size: size * 0.89,
-                          littleCirlceSizes:
+                          littleCircleSizes:
                               connectionState.reactiveValue(context) != ConnectionState.none
                                   ? littleCircleSizes.sublist(3)
                                   : littleCircleSizes.sublist(2),

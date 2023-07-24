@@ -21,7 +21,7 @@ class LocationConditionInfo extends StatelessWidget {
                 padding: const EdgeInsets.all(6.0),
                 child: Icon(
                   AppIcons.lightning_fill,
-                  color: Theme.of(context).highlightColor,
+                  color: Theme.of(context).primaryColor,
                   size: 30,
                 ),
               ),
@@ -29,7 +29,7 @@ class LocationConditionInfo extends StatelessWidget {
                 'Optimal location',
                 textAlign: TextAlign.center,
                 style: AppTextStyles.poppins16Regular.copyWith(
-                  color: Theme.of(context).highlightColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               )
             ],
@@ -44,7 +44,7 @@ class LocationConditionInfo extends StatelessWidget {
                     : Icon(
                         AppIcons.hourglasssimple,
                         size: 28,
-                        color: Theme.of(context).highlightColor,
+                        color: Theme.of(context).primaryColor,
                       ),
               ),
               Builder(
@@ -58,7 +58,7 @@ class LocationConditionInfo extends StatelessWidget {
                                 currentSession.value!.sessionInSeconds.reactiveValue(context)),
                     textAlign: TextAlign.center,
                     style: AppTextStyles.antonioLight26Caps.copyWith(
-                      color: Theme.of(context).highlightColor,
+                      color: Theme.of(context).primaryColor,
                     ),
                   );
                 },

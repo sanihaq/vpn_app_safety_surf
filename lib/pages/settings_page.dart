@@ -52,7 +52,7 @@ class SettingsPage extends StatelessWidget {
                         title: Padding(
                           padding: const EdgeInsets.only(left: 16.0),
                           child: Text(
-                            "Appearance",
+                            "Appearances",
                             style: AppTextStyles.antonioLight21Caps.copyWith(
                               color: Theme.of(context).indicatorColor,
                             ),
@@ -85,6 +85,8 @@ class SettingsPage extends StatelessWidget {
                                     ),
                                     DropdownButton<ThemeMode>(
                                       value: appThemeMode.reactiveValue(context),
+                                      style: AppTextStyles.poppins16Regular
+                                          .copyWith(color: Theme.of(context).indicatorColor),
                                       items: const [
                                         DropdownMenuItem(
                                             value: ThemeMode.system, child: Text("System")),

@@ -45,20 +45,20 @@ class App extends StatelessWidget {
       title: 'VPN App',
       themeMode: appThemeMode.reactiveValue(context),
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: AppColors.indigo, brightness: Brightness.light),
+        brightness: Brightness.light,
         useMaterial3: true,
-        highlightColor: AppColors.indigo,
+        primaryColor: AppColors.indigo,
+        highlightColor: AppColors.white,
         hintColor: AppColors.lightStateGray,
         canvasColor: AppColors.bg,
         cardColor: AppColors.white,
         indicatorColor: AppColors.black,
       ),
       darkTheme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: AppColors.tealBlue, brightness: Brightness.dark),
+        brightness: Brightness.dark,
         useMaterial3: true,
-        highlightColor: AppColors.tealBlue,
+        primaryColor: AppColors.tealBlue,
+        highlightColor: AppColors.charcoal,
         hintColor: AppColors.wildBlueYonder,
         canvasColor: AppColors.prussianBlue,
         cardColor: AppColors.charcoal,

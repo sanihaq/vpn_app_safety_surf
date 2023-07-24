@@ -25,21 +25,29 @@ class AppTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Column(
-        children: [
-          Icon(
-            isActive ? activeIcon : icon,
-            color: isActive ? color ?? AppColors.indigo : AppColors.lightStateGray,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.poppins16Regular.copyWith(
-              color: isActive ? color ?? AppColors.indigo : AppColors.lightStateGray,
+      child: Container(
+        width: 90,
+        color: Colors.transparent,
+        child: Column(
+          children: [
+            Icon(
+              isActive ? activeIcon : icon,
+              color: isActive
+                  ? color ?? Theme.of(context).highlightColor
+                  : Theme.of(context).hintColor,
             ),
-          )
-        ],
+            const SizedBox(height: 4),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.poppins16Regular.copyWith(
+                color: isActive
+                    ? color ?? Theme.of(context).highlightColor
+                    : Theme.of(context).hintColor,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -4,7 +4,6 @@ import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifier.dart';
-import '../theming/colors.dart';
 import '../utils/app_icons.dart';
 import '../widgets/spinner_widget.dart';
 
@@ -18,11 +17,11 @@ class LocationConditionInfo extends StatelessWidget {
     return connectionState.reactiveValue(context) == ConnectionState.none
         ? Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(6.0),
+              Padding(
+                padding: const EdgeInsets.all(6.0),
                 child: Icon(
                   AppIcons.lightning_fill,
-                  color: AppColors.indigo,
+                  color: Theme.of(context).highlightColor,
                   size: 30,
                 ),
               ),
@@ -30,7 +29,7 @@ class LocationConditionInfo extends StatelessWidget {
                 'Optimal location',
                 textAlign: TextAlign.center,
                 style: AppTextStyles.poppins16Regular.copyWith(
-                  color: const Color(0xFF5E5CE6),
+                  color: Theme.of(context).highlightColor,
                 ),
               )
             ],
@@ -42,10 +41,10 @@ class LocationConditionInfo extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: connectionState.reactiveValue(context) == ConnectionState.waiting
                     ? const SpinnerWidget()
-                    : const Icon(
+                    : Icon(
                         AppIcons.hourglasssimple,
                         size: 28,
-                        color: AppColors.indigo,
+                        color: Theme.of(context).highlightColor,
                       ),
               ),
               Builder(
@@ -59,7 +58,7 @@ class LocationConditionInfo extends StatelessWidget {
                                 currentSession.value!.sessionInSeconds.reactiveValue(context)),
                     textAlign: TextAlign.center,
                     style: AppTextStyles.antonioLight26Caps.copyWith(
-                      color: AppColors.indigo,
+                      color: Theme.of(context).highlightColor,
                     ),
                   );
                 },
@@ -71,7 +70,7 @@ class LocationConditionInfo extends StatelessWidget {
                     : 'Session',
                 textAlign: TextAlign.center,
                 style: AppTextStyles.poppins16Regular.copyWith(
-                  color: AppColors.lightStateGray,
+                  color: Theme.of(context).hintColor,
                 ),
               ),
             ],

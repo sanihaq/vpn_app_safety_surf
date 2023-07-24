@@ -32,8 +32,11 @@ class _SessionStatsState extends State<SessionStats> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: AppColors.gradientBg,
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Theme.of(context).canvasColor
+              : null,
+          gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBg : null,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -287,7 +290,9 @@ class _SessionStatsState extends State<SessionStats> {
                           'Are you satisfied\nwith the connection?',
                           textAlign: TextAlign.center,
                           style: AppTextStyles.poppins16SemiBold.copyWith(
-                            color: Colors.white,
+                            color: Theme.of(context).brightness == Brightness.dark
+                                ? AppColors.tealBlue
+                                : AppColors.white,
                           ),
                         ),
                       ],

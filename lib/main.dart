@@ -43,9 +43,26 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'VPN App',
+      themeMode: appThemeMode.reactiveValue(context),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.indigo),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: AppColors.indigo, brightness: Brightness.light),
         useMaterial3: true,
+        highlightColor: AppColors.indigo,
+        hintColor: AppColors.lightStateGray,
+        canvasColor: AppColors.bg,
+        cardColor: AppColors.white,
+        indicatorColor: AppColors.black,
+      ),
+      darkTheme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: AppColors.tealBlue, brightness: Brightness.dark),
+        useMaterial3: true,
+        highlightColor: AppColors.tealBlue,
+        hintColor: AppColors.wildBlueYonder,
+        canvasColor: AppColors.prussianBlue,
+        cardColor: AppColors.charcoal,
+        indicatorColor: AppColors.white,
       ),
       home: const HomePage(),
     );

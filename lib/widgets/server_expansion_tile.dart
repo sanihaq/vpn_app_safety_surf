@@ -41,14 +41,17 @@ class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
   Widget build(BuildContext context) {
     return ExpansionTile(
       initiallyExpanded: widget.isExpanded,
-      backgroundColor: AppColors.white,
-      collapsedBackgroundColor: AppColors.white,
+      maintainState: true,
+      backgroundColor: Theme.of(context).cardColor,
+      collapsedBackgroundColor: Theme.of(context).cardColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
       collapsedShape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
+      tilePadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      childrenPadding: const EdgeInsets.only(top: 2.0),
       title: Row(
         children: [
           Image.asset(
@@ -60,7 +63,7 @@ class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
             child: Text(
               widget.location.country.toUpperCase(),
               style: AppTextStyles.antonioLight21Caps.copyWith(
-                color: AppColors.black,
+                color: Theme.of(context).indicatorColor,
               ),
             ),
           ),
@@ -71,7 +74,9 @@ class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
         child: Icon(
           _isExpanded ? AppIcons.caretup : AppIcons.caretdown,
           size: 22,
-          color: AppColors.lightStateGray60,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.white
+              : AppColors.lightStateGray60,
         ),
       ),
       onExpansionChanged: (value) {
@@ -79,8 +84,6 @@ class _LocationExpansoinTileState extends State<LocationExpansoinTile> {
           _isExpanded = value;
         });
       },
-      tilePadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      childrenPadding: const EdgeInsets.only(top: 2.0),
       children: widget.location.servers
           .where((e) => widget.showOnlyFavourite ? favouriteIPs.value.contains(e.ip) : true)
           .map((e) => ServerLocationDetails(

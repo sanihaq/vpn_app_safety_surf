@@ -35,16 +35,16 @@ class CircleButton extends StatelessWidget {
       child: Container(
         width: 99,
         height: 99,
-        decoration: const ShapeDecoration(
-          color: Colors.white,
-          shape: OvalBorder(
+        decoration: ShapeDecoration(
+          color: Theme.of(context).cardColor,
+          shape: const OvalBorder(
             side: BorderSide(
               strokeAlign: BorderSide.strokeAlignInside,
               color: Color.fromARGB(255, 243, 245, 247),
               width: 1,
             ),
           ),
-          shadows: [
+          shadows: const [
             BoxShadow(
               color: Color.fromARGB(31, 122, 122, 122),
               blurRadius: 10,
@@ -62,17 +62,22 @@ class CircleButton extends StatelessWidget {
                     : 'OFF',
             textAlign: TextAlign.center,
             style: AppTextStyles.antonioLight26Caps.copyWith(
-              foreground: Paint()
-                ..shader = const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomLeft,
-                  colors: <Color>[
-                    Color.fromARGB(255, 100, 210, 255),
-                    Color.fromARGB(255, 94, 92, 230),
-                  ],
-                ).createShader(
-                  const Rect.fromLTWH(0.0, 0.0, 51.0, 31.0),
-                ),
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).indicatorColor
+                  : null,
+              foreground: Theme.of(context).brightness == Brightness.dark
+                  ? null
+                  : (Paint()
+                    ..shader = const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomLeft,
+                      colors: <Color>[
+                        Color.fromARGB(255, 100, 210, 255),
+                        Color.fromARGB(255, 94, 92, 230),
+                      ],
+                    ).createShader(
+                      const Rect.fromLTWH(0.0, 0.0, 51.0, 31.0),
+                    )),
             ),
           ),
         ),

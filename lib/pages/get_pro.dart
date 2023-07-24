@@ -17,8 +17,11 @@ class GetProPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: AppColors.gradientBg,
+        decoration: BoxDecoration(
+          color: Theme.of(context).brightness == Brightness.dark
+              ? Theme.of(context).canvasColor
+              : null,
+          gradient: Theme.of(context).brightness == Brightness.light ? AppColors.gradientBg : null,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -99,10 +102,10 @@ class GetProPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: Container(
-                    decoration: const BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      boxShadow: [
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           offset: Offset(0, 10),
@@ -157,7 +160,7 @@ class GetProPage extends StatelessWidget {
                                                 Text(
                                                   e.value["title"]!,
                                                   style: AppTextStyles.antonioLight21Caps.copyWith(
-                                                    color: AppColors.black,
+                                                    color: Theme.of(context).indicatorColor,
                                                   ),
                                                 ),
                                                 const SizedBox(height: 4),
@@ -165,7 +168,7 @@ class GetProPage extends StatelessWidget {
                                                   e.value["subtitle"]!,
                                                   textAlign: TextAlign.start,
                                                   style: AppTextStyles.poppins16Regular.copyWith(
-                                                    color: AppColors.lightStateGray,
+                                                    color: Theme.of(context).hintColor,
                                                   ),
                                                 ),
                                               ],
@@ -180,7 +183,8 @@ class GetProPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                if (i < 2) const Divider(thickness: 2, color: AppColors.bg),
+                                if (i < 2)
+                                  Divider(thickness: 2, color: Theme.of(context).canvasColor),
                               ],
                             ),
                           )
@@ -191,10 +195,12 @@ class GetProPage extends StatelessWidget {
                 const SizedBox(height: 28),
                 Column(
                   children: [
-                    const Icon(
+                    Icon(
                       AppIcons.shoppingcartsimple,
                       size: 32,
-                      color: AppColors.white,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? AppColors.wildBlueYonder
+                          : AppColors.white,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
@@ -202,7 +208,9 @@ class GetProPage extends StatelessWidget {
                         'Restore purchases',
                         textAlign: TextAlign.center,
                         style: AppTextStyles.poppins16Regular.copyWith(
-                          color: AppColors.white,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? AppColors.wildBlueYonder
+                              : AppColors.white,
                         ),
                       ),
                     ),

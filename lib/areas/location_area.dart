@@ -5,7 +5,6 @@ import 'package:vpn_app/theming/text_styles.dart';
 
 import '../data/models/location_model.dart';
 import '../states/notifier.dart';
-import '../theming/colors.dart';
 import '../utils/app_icons.dart';
 import '../widgets/connection_health_indicator.dart';
 
@@ -28,12 +27,12 @@ class LocatonArea extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     width: 98,
                     child: Icon(
                       AppIcons.lockkeyopen,
                       size: 30,
-                      color: AppColors.lightStateGray,
+                      color: Theme.of(context).hintColor,
                     ),
                   ),
                   SizedBox(
@@ -42,7 +41,7 @@ class LocatonArea extends StatelessWidget {
                       location.country.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: AppTextStyles.antonioLight26Caps.copyWith(
-                        color: AppColors.black,
+                        color: Theme.of(context).indicatorColor,
                         overflow: TextOverflow.fade,
                       ),
                     ),
@@ -69,7 +68,7 @@ class LocatonArea extends StatelessWidget {
                       'Auto',
                       textAlign: TextAlign.center,
                       style: AppTextStyles.poppins16Regular.copyWith(
-                        color: AppColors.lightStateGray,
+                        color: Theme.of(context).hintColor,
                       ),
                     ),
                   ),
@@ -79,7 +78,7 @@ class LocatonArea extends StatelessWidget {
                       server.ip,
                       textAlign: TextAlign.center,
                       style: AppTextStyles.poppins16Regular.copyWith(
-                        color: AppColors.lightStateGray,
+                        color: Theme.of(context).hintColor,
                       ),
                     ),
                   ),
@@ -91,7 +90,7 @@ class LocatonArea extends StatelessWidget {
                         "$ping ms",
                         textAlign: TextAlign.center,
                         style: AppTextStyles.poppins16Regular.copyWith(
-                          color: AppColors.lightStateGray,
+                          color: Theme.of(context).hintColor,
                         ),
                       );
                     }),

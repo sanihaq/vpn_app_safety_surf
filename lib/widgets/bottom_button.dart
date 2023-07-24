@@ -20,11 +20,11 @@ class BottomNavigationButton extends StatelessWidget {
       child: Container(
         width: 98,
         height: 56,
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.all(Radius.circular(28)),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: const BorderRadius.all(Radius.circular(28)),
         ),
-        child: Icon(icon, size: 32),
+        child: Icon(icon, size: 32, color: Theme.of(context).indicatorColor),
       ),
     );
   }

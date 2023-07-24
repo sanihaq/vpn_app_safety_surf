@@ -51,8 +51,8 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
         ? const SizedBox()
         : Column(
             children: [
-              const Divider(
-                color: AppColors.bg,
+              Divider(
+                color: Theme.of(context).canvasColor,
                 thickness: 2,
                 height: 0,
                 indent: 0,
@@ -77,7 +77,7 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                               child: Text(
                                 widget.server.name.toUpperCase(),
                                 style: AppTextStyles.antonioLight21Caps.copyWith(
-                                  color: AppColors.black,
+                                  color: Theme.of(context).indicatorColor,
                                 ),
                               ),
                             )
@@ -112,7 +112,7 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                                 final ping = widget.server.ping.value; //reactiveValue(context);
                                 return Text('Ping: $ping ms',
                                     style: AppTextStyles.poppins16Regular
-                                        .copyWith(color: AppColors.lightStateGray));
+                                        .copyWith(color: Theme.of(context).hintColor));
                               }),
                             )
                           ],

@@ -26,9 +26,9 @@ class OverflowCircle extends StatelessWidget {
       child: Container(
         height: size - paddonfOffset,
         width: size,
-        decoration: const ShapeDecoration(
-          color: AppColors.bg,
-          shape: OvalBorder(),
+        decoration: ShapeDecoration(
+          color: Theme.of(context).canvasColor,
+          shape: const OvalBorder(),
         ),
         clipBehavior: Clip.antiAlias,
         child: Stack(

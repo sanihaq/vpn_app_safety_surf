@@ -10,3 +10,5 @@ final selectedIPs =
     ValueNotifier<List<String>>(["5.149.112.247", "153.157.124.113", "74.62.225.21"]);
 
 final currentSession = ValueNotifier<SessionModel?>(null);
+
+final appThemeMode = ValueNotifier(ThemeMode.system);

@@ -24,7 +24,6 @@ class Circles extends StatelessWidget {
             size * 0.3968,
             size * 0.275,
           ];
-
     return Stack(
       children: connectionState.reactiveValue(context) == ConnectionState.active
           ? [

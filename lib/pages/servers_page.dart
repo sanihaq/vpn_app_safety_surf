@@ -54,7 +54,9 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(color: AppColors.bg),
+        decoration: BoxDecoration(
+          color: Theme.of(context).canvasColor,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

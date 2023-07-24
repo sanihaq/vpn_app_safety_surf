@@ -310,7 +310,7 @@ class _SessionStatsState extends State<SessionStats> {
                             Builder(builder: (context) {
                               return Icon(
                                 _stisFactionRate.reactiveValue(context) == 1
-                                    ? AppIcons.thumbsup_fill
+                                    ? AppIcons.thumbsupfill
                                     : AppIcons.thumbsup,
                                 color: AppColors.white,
                                 size: 24,
@@ -341,7 +341,7 @@ class _SessionStatsState extends State<SessionStats> {
                           children: [
                             Icon(
                               favoriteIPs.reactiveValue(context).contains(server?.ip ?? "")
-                                  ? AppIcons.heart_fill
+                                  ? AppIcons.heartFill
                                   : AppIcons.heart,
                               color: AppColors.white,
                               size: 24,
@@ -366,7 +366,7 @@ class _SessionStatsState extends State<SessionStats> {
                             Builder(builder: (context) {
                               return Icon(
                                 _stisFactionRate.reactiveValue(context) == 0
-                                    ? AppIcons.thumbsdown_fill
+                                    ? AppIcons.thumbsdownfill
                                     : AppIcons.thumbsdown,
                                 color: AppColors.white,
                                 size: 24,

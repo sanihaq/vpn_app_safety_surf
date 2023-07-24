@@ -26,7 +26,7 @@ class BottomNavbar extends StatelessWidget {
           },
         ),
         BottomNavigationButton(
-          icon: AppIcons.globesimple,
+          icon: AppIcons.globeSimple,
           onTap: () {
             Navigator.of(context).push(
               createRoute(const ServersPage()),

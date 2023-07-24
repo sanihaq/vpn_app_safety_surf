@@ -22,7 +22,7 @@ class ConnectionHealthIndicator extends StatelessWidget {
               ? 1
               : isGreen && health <= 70 || !isGreen && health <= 150 && i <= 1
                   ? 1
-                  : 0.3;
+                  : 0.2;
           return Padding(
             padding: const EdgeInsets.all(2.0),
             child: Container(

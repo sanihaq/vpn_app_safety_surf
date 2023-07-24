@@ -69,7 +69,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                 AppTab(
                   isActive: tabController.index == 0,
                   icon: AppIcons.harddrives,
-                  activeIcon: AppIcons.harddrives_fill,
+                  activeIcon: AppIcons.harddrivesfill,
                   text: "All server",
                   onTap: () {
                     tabController.animateTo(0);
@@ -78,7 +78,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                 AppTab(
                   isActive: tabController.index == 1,
                   icon: AppIcons.lightning,
-                  activeIcon: AppIcons.lightning_fill,
+                  activeIcon: AppIcons.lightningFill,
                   text: "Optimal",
                   onTap: () {
                     tabController.animateTo(1);
@@ -87,7 +87,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                 AppTab(
                   isActive: tabController.index == 2,
                   icon: AppIcons.heart,
-                  activeIcon: AppIcons.heart_fill,
+                  activeIcon: AppIcons.heartFill,
                   text: "Favourites",
                   color: AppColors.pink,
                   onTap: () {

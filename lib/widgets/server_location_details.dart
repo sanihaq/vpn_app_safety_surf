@@ -95,10 +95,10 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                                   final isLowPing = widget.server.ping.value < 90;
                                   return Icon(
                                     isFavorite
-                                        ? AppIcons.heart_fill
+                                        ? AppIcons.heartFill
                                         : isLowPing
-                                            ? AppIcons.lightning_fill
-                                            : AppIcons.globesimple,
+                                            ? AppIcons.lightningFill
+                                            : AppIcons.globeSimpleFill,
                                     size: 18,
                                     color: isFavorite
                                         ? AppColors.pink

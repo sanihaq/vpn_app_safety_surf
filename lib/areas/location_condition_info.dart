@@ -20,7 +20,7 @@ class LocationConditionInfo extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(6.0),
                 child: Icon(
-                  AppIcons.lightning_fill,
+                  AppIcons.lightningFill,
                   color: Theme.of(context).primaryColor,
                   size: 30,
                 ),

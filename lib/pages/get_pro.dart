@@ -187,7 +187,9 @@ class GetProPage extends StatelessWidget {
                                         child: PowerButton(
                                           type: i == 0
                                               ? PowerButtonType.yellow
-                                              : PowerButtonType.white,
+                                              : Theme.of(context).brightness == Brightness.dark
+                                                  ? PowerButtonType.dark
+                                                  : PowerButtonType.white,
                                         ),
                                       ),
                                     ],

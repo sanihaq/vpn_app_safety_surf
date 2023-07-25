@@ -13,12 +13,7 @@ enum PowerButtonType {
 }
 
 class PowerButton extends StatelessWidget {
-  const PowerButton({
-    super.key,
-    this.onTap,
-    this.type = PowerButtonType.yellow,
-    this.iconData = AppIcons.power,
-  });
+  const PowerButton({super.key, this.onTap, required this.type, this.iconData = AppIcons.power});
 
   final void Function()? onTap;
   final PowerButtonType type;
@@ -26,40 +21,78 @@ class PowerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gradientColor = type == PowerButtonType.blue
+        ? const LinearGradient(
+            begin: Alignment(-0.71, -0.71),
+            end: Alignment(0.71, 0.71),
+            colors: [AppColors.tealBlue, AppColors.indigo],
+          )
+        : null;
     final color = type == PowerButtonType.yellow
         ? AppColors.yellow
-        : type == PowerButtonType.white
-            ? AppColors.white
-            : AppColors.white;
+        : type == PowerButtonType.dark
+            ? AppColors.charcoal
+            : type == PowerButtonType.white
+                ? AppColors.white
+                : AppColors.white;
     final wrapperColor = type == PowerButtonType.yellow
         ? AppColors.yellow
-        : type == PowerButtonType.white
-            ? AppColors.lightStateGray
-            : AppColors.white;
+        : type == PowerButtonType.blue
+            ? AppColors.tealBlue
+            : type == PowerButtonType.dark
+                ? AppColors.prussianBlue
+                : type == PowerButtonType.white && iconData != AppIcons.crown
+                    ? AppColors.lightStateGray
+                    : AppColors.white;
     final double wrapperOpacity1 = type == PowerButtonType.yellow
         ? 0.6
-        : type == PowerButtonType.white
-            ? 0.18
-            : 0;
+        : type == PowerButtonType.blue
+            ? 1
+            : type == PowerButtonType.dark
+                ? 1
+                : type == PowerButtonType.white && iconData != AppIcons.crown
+                    ? 0.18
+                    : 0.6;
     final double wrapperOpacity2 = type == PowerButtonType.yellow
         ? 0.22
-        : type == PowerButtonType.white
-            ? 0.1
-            : 0;
-    final isGradientIcon = type == PowerButtonType.white ? true : false;
-    final iconColor = !isGradientIcon ? AppColors.black : null;
+        : type == PowerButtonType.blue
+            ? 0.3
+            : type == PowerButtonType.dark
+                ? 0.6
+                : type == PowerButtonType.white && iconData != AppIcons.crown
+                    ? 0.1
+                    : 0.22;
+    final isGradientIcon = (type == PowerButtonType.white && iconData != AppIcons.crown) ||
+            type == PowerButtonType.dark
+        ? true
+        : false;
+    final iconColor = !isGradientIcon
+        ? type == PowerButtonType.blue
+            ? AppColors.white
+            : AppColors.black
+        : null;
     final borderGradientColor = type == PowerButtonType.yellow
         ? [
             AppColors.pink.withOpacity(0),
             AppColors.pink.withOpacity(0.1),
           ]
-        : type == PowerButtonType.white
+        : type == PowerButtonType.blue
             ? [
-                AppColors.bg.withOpacity(0),
-                AppColors.bg.withOpacity(1),
+                AppColors.tealBlue.withOpacity(0),
+                AppColors.indigo,
               ]
-            : [Colors.transparent, Colors.transparent];
-    var icon = Icon(
+            : type == PowerButtonType.dark
+                ? [
+                    AppColors.prussianBlue.withOpacity(0),
+                    AppColors.prussianBlue.withOpacity(0.8),
+                  ]
+                : type == PowerButtonType.white
+                    ? [
+                        AppColors.bg.withOpacity(0),
+                        AppColors.bg.withOpacity(1),
+                      ]
+                    : [Colors.transparent, Colors.transparent];
+    final icon = Icon(
       iconData,
       size: 30,
       color: iconColor,
@@ -73,16 +106,18 @@ class PowerButton extends StatelessWidget {
           color: wrapperColor,
           opacity: wrapperOpacity1,
           child: Container(
-            width: 48,
-            height: 48,
+            width: 52,
+            height: 52,
             decoration: BoxDecoration(
-              color: color,
+              color: gradientColor == null ? color : null,
+              gradient: gradientColor,
               shape: BoxShape.circle,
               border: GradientBoxBorder(
                 width: 3,
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
+                  stops: type == PowerButtonType.dark ? [0.18, 0.78] : null,
                   colors: borderGradientColor,
                 ),
               ),

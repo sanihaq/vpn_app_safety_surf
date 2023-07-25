@@ -135,8 +135,7 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 12.0, vertical: 18),
+                                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
                                         child: Text(
                                           'FREE 7 DAYS UNLIM',
                                           style: AppTextStyles.antonioLight21Caps.copyWith(
@@ -147,7 +146,10 @@ class _ServersPageState extends State<ServersPage> with SingleTickerProviderStat
                                     ],
                                   ),
                                 ),
-                                const PowerButton(),
+                                const PowerButton(
+                                  type: PowerButtonType.white,
+                                  iconData: AppIcons.crown,
+                                ),
                               ],
                             ),
                           ),

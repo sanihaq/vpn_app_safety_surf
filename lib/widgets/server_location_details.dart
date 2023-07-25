@@ -120,12 +120,27 @@ class _ServerLocationDetailsState extends State<ServerLocationDetails> {
                         ),
                       ],
                     ),
-                    PowerButton(
-                      onTap: () {
-                        selectedIPs.value = [widget.server.ip, ...selectedIPs.value..removeLast()];
-                        Navigator.of(context).pop();
-                      },
-                    )
+                    Builder(builder: (context) {
+                      final isFavorite =
+                          favoriteIPs.reactiveValue(context).contains(widget.server.ip);
+                      return PowerButton(
+                        iconData: widget.server.isPro ? AppIcons.crown : AppIcons.power,
+                        type: widget.server.isPro
+                            ? PowerButtonType.yellow
+                            : isFavorite
+                                ? PowerButtonType.blue
+                                : Theme.of(context).brightness == Brightness.dark
+                                    ? PowerButtonType.dark
+                                    : PowerButtonType.white,
+                        onTap: () {
+                          selectedIPs.value = [
+                            widget.server.ip,
+                            ...selectedIPs.value..removeLast()
+                          ];
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    })
                   ],
                 ),
               ),

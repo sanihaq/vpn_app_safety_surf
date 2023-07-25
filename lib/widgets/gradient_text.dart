@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../theming/colors.dart';
 
-class GradientText extends StatelessWidget {
-  const GradientText({
+class GradientWidget extends StatelessWidget {
+  const GradientWidget({
     super.key,
-    required this.text,
+    required this.child,
   });
 
-  final Text text;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class GradientText extends StatelessWidget {
       ).createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),
-      child: text,
+      child: child,
     );
   }
 }

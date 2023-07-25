@@ -89,7 +89,8 @@ class CircleButton extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Theme.of(context).brightness == Brightness.dark ? text : GradientText(text: text),
+          child:
+              Theme.of(context).brightness == Brightness.dark ? text : GradientWidget(child: text),
         ),
       ),
     );

@@ -62,7 +62,7 @@ class AppIcons {
   static const IconData power = IconData(0xe818, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData rocketlaunch =
       IconData(0xe819, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData shoppingcartsimple =
+  static const IconData shoppingCartSimple =
       IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData sortascending =
       IconData(0xe81b, fontFamily: _kFontFam, fontPackage: _kFontPkg);

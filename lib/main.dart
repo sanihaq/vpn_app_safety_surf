@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                                         );
                                         return connectionState.reactiveValue(context) ==
                                                 ConnectionState.none
-                                            ? GradientText(text: text)
+                                            ? GradientWidget(child: text)
                                             : text;
                                       }),
                                     ],

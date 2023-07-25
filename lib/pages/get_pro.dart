@@ -55,7 +55,7 @@ class GetProPage extends StatelessWidget {
                       ),
                     ),
                     Theme.of(context).brightness == Brightness.dark
-                        ? GradientText(text: text)
+                        ? GradientWidget(child: text)
                         : text,
                   ],
                 ),
@@ -182,9 +182,13 @@ class GetProPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      const Padding(
-                                        padding: EdgeInsets.only(right: 12.0),
-                                        child: PowerButton(),
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 12.0),
+                                        child: PowerButton(
+                                          type: i == 0
+                                              ? PowerButtonType.yellow
+                                              : PowerButtonType.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -202,7 +206,7 @@ class GetProPage extends StatelessWidget {
                 Column(
                   children: [
                     Icon(
-                      AppIcons.shoppingcartsimple,
+                      AppIcons.shoppingCartSimple,
                       size: 32,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? AppColors.wildBlueYonder

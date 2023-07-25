@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 
 import '../states/notifiers.dart';
 import '../theming/colors.dart';
@@ -41,16 +42,38 @@ class Circles extends StatelessWidget {
                 ),
               ),
               Center(
-                child: Opacity(
-                  opacity: 0.10,
-                  child: Container(
-                    width: sizes.last,
-                    height: sizes.last,
-                    decoration: const ShapeDecoration(
-                      color: AppColors.white,
-                      shape: OvalBorder(),
-                    ),
-                  ),
+                child: Container(
+                  width: sizes.last,
+                  height: sizes.last,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: const [0, 0.4, 0.5, 0.6, 1],
+                        colors: [
+                          AppColors.white.withOpacity(0.2),
+                          AppColors.white.withOpacity(0),
+                          AppColors.white.withOpacity(0),
+                          AppColors.white.withOpacity(0),
+                          AppColors.white.withOpacity(0.2)
+                        ],
+                      ),
+                      shape: BoxShape.circle,
+                      border: GradientBoxBorder(
+                        width: 1,
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          stops: const [0, 0.4, 0.5, 0.6, 1],
+                          colors: [
+                            AppColors.white.withOpacity(0.3),
+                            AppColors.white.withOpacity(0),
+                            AppColors.white.withOpacity(0),
+                            AppColors.white.withOpacity(0),
+                            AppColors.white.withOpacity(0.3)
+                          ],
+                        ),
+                      )),
                 ),
               ),
             ]

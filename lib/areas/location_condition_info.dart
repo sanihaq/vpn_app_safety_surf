@@ -42,7 +42,7 @@ class LocationConditionInfo extends StatelessWidget {
                 child: connectionState.reactiveValue(context) == ConnectionState.waiting
                     ? const SpinnerWidget()
                     : Icon(
-                        AppIcons.hourglasssimple,
+                        AppIcons.hourglassSimple,
                         size: 28,
                         color: Theme.of(context).primaryColor,
                       ),

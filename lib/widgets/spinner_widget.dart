@@ -33,10 +33,10 @@ class _SpinnerWidgetState extends State<SpinnerWidget> with TickerProviderStateM
   Widget build(BuildContext context) {
     return RotationTransition(
       turns: _animation,
-      child: const Icon(
+      child: Icon(
         AppIcons.spinner,
         size: 28,
-        color: AppColors.indigo,
+        color: Theme.of(context).primaryColor,
       ),
     );
   }

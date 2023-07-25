@@ -48,7 +48,7 @@ class AppIcons {
       IconData(0xe80e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData heart = IconData(0xe80f, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData heartFill = IconData(0xe810, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData hourglasssimple =
+  static const IconData hourglassSimple =
       IconData(0xe811, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData lightning = IconData(0xe812, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData lightningFill =

@@ -1,13 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:vpn_app/data/models/session_model.dart';
 import 'package:vpn_app/pages/session_stats.dart';
+import 'package:vpn_app/theming/colors.dart';
 import 'package:vpn_app/theming/text_styles.dart';
 
 import '../states/notifiers.dart';
 import '../utils/create_route.dart';
 import 'gradient_text.dart';
+
+Timer? _connectionTimer;
 
 class CircleButton extends StatelessWidget {
   const CircleButton({
@@ -33,18 +38,23 @@ class CircleButton extends StatelessWidget {
       onTap: () {
         if (connectionState.value == ConnectionState.none) {
           connectionState.value = ConnectionState.waiting;
-          Future.delayed(const Duration(seconds: 1)).then((value) {
+          _connectionTimer?.cancel();
+          _connectionTimer = Timer(const Duration(seconds: 1), () {
             connectionState.value = ConnectionState.active;
             currentSession.value = SessionModel(ip: selectedIPs.value.first)..startSession();
           });
         } else {
+          _connectionTimer?.cancel();
+          final wasActive = connectionState.value == ConnectionState.active;
           connectionState.value = ConnectionState.none;
           currentSession.value?.stopSession();
-          Future.delayed(const Duration(milliseconds: 300)).then((value) {
-            Navigator.of(context).push(
-              createRoute(const SessionStats()),
-            );
-          });
+          if (wasActive) {
+            Future.delayed(const Duration(milliseconds: 300)).then((value) {
+              Navigator.of(context).push(
+                createRoute(const SessionStats()),
+              );
+            });
+          }
         }
       },
       child: Container(
@@ -57,7 +67,7 @@ class CircleButton extends StatelessWidget {
               ? const LinearGradient(
                   begin: Alignment(-0.08, 1.00),
                   end: Alignment(0.08, -1),
-                  colors: [Color(0xFF5E5CE6), Color(0xFF64D2FF)],
+                  colors: [AppColors.indigo, AppColors.tealBlue],
                 )
               : null,
           border: GradientBoxBorder(

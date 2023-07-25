@@ -154,7 +154,7 @@ class _SessionStatsState extends State<SessionStats> {
                           Column(
                             children: [
                               const Icon(
-                                AppIcons.hourglasssimple,
+                                AppIcons.hourglassSimple,
                                 size: 26,
                                 color: AppColors.tealBlue,
                               ),
@@ -233,7 +233,7 @@ class _SessionStatsState extends State<SessionStats> {
                         Column(
                           children: [
                             const Icon(
-                              AppIcons.hourglasssimple,
+                              AppIcons.hourglassSimple,
                               size: 26,
                               color: AppColors.tealBlue,
                             ),

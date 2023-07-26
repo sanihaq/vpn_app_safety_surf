@@ -9,7 +9,7 @@ class OverflowCircle extends StatelessWidget {
     super.key,
     required this.size,
     this.paddingOffset = 0,
-    this.littleCircleSizes = const [],
+    this.circleSizes = const [],
   });
 
   final double size;
@@ -17,7 +17,7 @@ class OverflowCircle extends StatelessWidget {
   /// only pass if the `OverflowCircle` is in top
   final double paddingOffset;
 
-  final List<double> littleCircleSizes;
+  final List<double> circleSizes;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class OverflowCircle extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAlias,
         child: Stack(
-          children: littleCircleSizes.mapIndexed(
+          children: circleSizes.mapIndexed(
             (i, size) {
               return Align(
                 alignment: paddingOffset != 0 ? Alignment.bottomCenter : Alignment.topCenter,

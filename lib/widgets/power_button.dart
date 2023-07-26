@@ -132,6 +132,7 @@ class PowerButton extends StatelessWidget {
 
 class _WrapperBorder extends StatelessWidget {
   const _WrapperBorder({
+    // ignore: unused_element
     super.key,
     required this.color,
     required this.child,

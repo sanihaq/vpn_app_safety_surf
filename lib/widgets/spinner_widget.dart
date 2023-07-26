@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../theming/colors.dart';
 import '../utils/app_icons.dart';
 
 class SpinnerWidget extends StatefulWidget {

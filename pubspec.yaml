@@ -19,7 +19,6 @@ dependencies:
   flutter_reactive_value: ^1.0.4
   window_manager: ^0.3.5
   flutter_persistent_value_notifier: ^1.0.2
-  adobe_xd: ^2.0.1
 
 dev_dependencies:
   flutter_test:

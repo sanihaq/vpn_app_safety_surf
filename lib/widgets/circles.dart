@@ -1,4 +1,3 @@
-import 'package:adobe_xd/adobe_xd.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_value/flutter_reactive_value.dart';
@@ -7,6 +6,7 @@ import 'package:gradient_borders/gradient_borders.dart';
 import '../states/notifiers.dart';
 import '../theming/colors.dart';
 import '../utils/sizes.dart';
+import 'blend_mask.dart';
 
 class Circles extends StatelessWidget {
   const Circles({

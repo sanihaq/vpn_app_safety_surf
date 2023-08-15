@@ -11,7 +11,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_web_frame: 
+    git:
+      url: https://github.com/sanihaq/flutter_web_frame.git
   collection: ^1.17.1
   intl: ^0.18.1
   cupertino_icons: ^1.0.2

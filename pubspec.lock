@@ -107,6 +107,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_frame:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: e31efab379c0697cf5e335c1b78a2ab19fa96aac
+      url: "https://github.com/sanihaq/flutter_web_frame.git"
+    source: git
+    version: "1.0.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
